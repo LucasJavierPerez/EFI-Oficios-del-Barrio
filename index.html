@@ -121,6 +121,7 @@ p { margin: 0; }
 .cols-3 > * { padding: 22px 28px 0 0; min-width: 0; }
 .cols-3 > * + * { border-left: 1px solid var(--rule); padding-left: 28px; }
 .num { font: 400 clamp(46px, 5.4vw, 84px)/1 var(--serif); letter-spacing: -.02em; margin-bottom: 14px; font-variant-numeric: tabular-nums; }
+.num .unit { font-size: .4em; font-style: italic; letter-spacing: 0; white-space: nowrap; }
 .idx { font: 500 13px/1 var(--mono); color: var(--muted); display: block; margin-bottom: 14px; }
 .btn {
   display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 20px; border-radius: 999px;
@@ -531,8 +532,8 @@ p { margin: 0; }
       <p class="kicker" data-r>4 · ¿Cómo ayuda a nuestra comunidad?</p>
       <h2 data-r>Lo que gana el barrio.</h2>
       <div class="cols-3">
-        <div data-r><div class="num"><span class="count" data-to="0">0</span> <span class="or">%</span></div><h3>Economía local circular</h3><p class="body">Se contrata a trabajadores a pocas cuadras, sin intermediarios ni comisiones.</p></div>
-        <div data-r><div class="num"><span class="count" data-to="3">3</span> pasos</div><h3>Inclusión digital</h3><p class="body">Presencia digital inmediata para quien no maneja marketing ni redes, con un alta guiada.</p></div>
+        <div data-r><div class="num"><span class="count" data-to="0">0</span> % <span class="unit or">de comisión</span></div><h3>Economía local circular</h3><p class="body">Se contrata a trabajadores a pocas cuadras, sin intermediarios ni comisiones.</p></div>
+        <div data-r><div class="num"><span class="count" data-to="3">3</span> <span class="unit">pasos de alta</span></div><h3>Inclusión digital</h3><p class="body">Presencia digital inmediata para quien no maneja marketing ni redes, con un alta guiada.</p></div>
         <div data-r><div class="num"><em>Vecinos</em></div><h3>Seguridad comunitaria</h3><p class="body">Tranquilidad para adultos mayores y familias, con referencias directas de su propio barrio.</p></div>
       </div>
     </div>
