@@ -1,0 +1,240 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1820" height="1080" viewBox="0 0 1820 1080" font-family="Inter, Helvetica, Arial, sans-serif">
+  <rect width="1820" height="1080" fill="#F5F7FA"/>
+
+  <!-- Encabezado -->
+  <text x="40" y="66" font-size="36" font-weight="700" fill="#0F172A">Recorrido del usuario — Oficios del Barrio</text>
+  <text x="40" y="98" font-size="17" fill="#475569">El camino completo dentro de la app, desde que aparece el problema hasta que queda la calificación</text>
+
+  <!-- Etapas -->
+  <circle cx="360" cy="152" r="17" fill="#1A56A8"/>
+  <text x="360" y="158" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">1</text>
+  <text x="360" y="198" font-size="16" font-weight="700" fill="#0F172A" text-anchor="middle">Llegada</text>
+
+  <circle cx="616" cy="152" r="17" fill="#1A56A8"/>
+  <text x="616" y="158" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">2</text>
+  <text x="616" y="198" font-size="16" font-weight="700" fill="#0F172A" text-anchor="middle">Búsqueda</text>
+
+  <circle cx="872" cy="152" r="17" fill="#1A56A8"/>
+  <text x="872" y="158" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">3</text>
+  <text x="872" y="198" font-size="16" font-weight="700" fill="#0F172A" text-anchor="middle">Comparación</text>
+
+  <circle cx="1128" cy="152" r="17" fill="#1A56A8"/>
+  <text x="1128" y="158" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">4</text>
+  <text x="1128" y="198" font-size="16" font-weight="700" fill="#0F172A" text-anchor="middle">Decisión</text>
+
+  <circle cx="1384" cy="152" r="17" fill="#D35400"/>
+  <text x="1384" y="158" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">5</text>
+  <text x="1384" y="198" font-size="16" font-weight="700" fill="#A64200" text-anchor="middle">Contacto</text>
+
+  <circle cx="1640" cy="152" r="17" fill="#1A56A8"/>
+  <text x="1640" y="158" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">6</text>
+  <text x="1640" y="198" font-size="16" font-weight="700" fill="#0F172A" text-anchor="middle">Cierre</text>
+
+  <!-- Riel -->
+  <line x1="250" y1="224" x2="1750" y2="224" stroke="#CBD5E1" stroke-width="2.5" stroke-linecap="round"/>
+  <g stroke="#94A3B8" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M473 217 l7 7 l-7 7"/>
+    <path d="M729 217 l7 7 l-7 7"/>
+    <path d="M985 217 l7 7 l-7 7"/>
+    <path d="M1241 217 l7 7 l-7 7"/>
+    <path d="M1497 217 l7 7 l-7 7"/>
+  </g>
+
+  <!-- ============ CARRIL VECINO ============ -->
+  <rect x="40" y="250" width="190" height="210" rx="20" fill="#1A56A8"/>
+  <text x="64" y="298" font-size="13" font-weight="700" fill="#8FB6E6" letter-spacing="1.2">CARRIL A</text>
+  <text x="64" y="336" font-size="24" font-weight="700" fill="#FFFFFF">Vecino</text>
+  <text x="64" y="374" font-size="15" fill="#D6E4F7">Tiene un problema</text>
+  <text x="64" y="396" font-size="15" fill="#D6E4F7">en casa y necesita</text>
+  <text x="64" y="418" font-size="15" fill="#D6E4F7">resolverlo hoy.</text>
+
+  <!-- A1 -->
+  <rect x="250" y="250" width="220" height="210" rx="18" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="250" y="250" width="220" height="6" rx="3" fill="#1A56A8"/>
+  <text x="272" y="296" font-size="18" font-weight="700" fill="#0F172A">Entra y elige</text>
+  <text x="272" y="318" font-size="18" font-weight="700" fill="#0F172A">qué necesita</text>
+  <text x="272" y="350" font-size="13.5" fill="#475569">Abre la app instalada en el</text>
+  <text x="272" y="370" font-size="13.5" fill="#475569">celular y toca «Necesito un</text>
+  <text x="272" y="390" font-size="13.5" fill="#475569">servicio».</text>
+  <rect x="272" y="410" width="140" height="28" rx="14" fill="#E3EDF9"/>
+  <text x="342" y="429" font-size="12.5" font-weight="700" fill="#1A56A8" text-anchor="middle">02 · Bienvenida</text>
+
+  <!-- A2 -->
+  <rect x="506" y="250" width="220" height="210" rx="18" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="506" y="250" width="220" height="6" rx="3" fill="#1A56A8"/>
+  <text x="528" y="296" font-size="18" font-weight="700" fill="#0F172A">Busca el oficio</text>
+  <text x="528" y="318" font-size="18" font-weight="700" fill="#0F172A">que necesita</text>
+  <text x="528" y="350" font-size="13.5" fill="#475569">Toca el ícono grande del</text>
+  <text x="528" y="370" font-size="13.5" fill="#475569">oficio. La app ya sabe en</text>
+  <text x="528" y="390" font-size="13.5" fill="#475569">qué barrio está.</text>
+  <rect x="528" y="410" width="110" height="28" rx="14" fill="#E3EDF9"/>
+  <text x="583" y="429" font-size="12.5" font-weight="700" fill="#1A56A8" text-anchor="middle">03 · Home</text>
+
+  <!-- A3 -->
+  <rect x="762" y="250" width="220" height="210" rx="18" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="762" y="250" width="220" height="6" rx="3" fill="#1A56A8"/>
+  <text x="784" y="296" font-size="18" font-weight="700" fill="#0F172A">Compara los</text>
+  <text x="784" y="318" font-size="18" font-weight="700" fill="#0F172A">que tiene cerca</text>
+  <text x="784" y="350" font-size="13.5" fill="#475569">Lista ordenada por distancia,</text>
+  <text x="784" y="370" font-size="13.5" fill="#475569">puntaje y quién está</text>
+  <text x="784" y="390" font-size="13.5" fill="#475569">disponible ahora.</text>
+  <rect x="784" y="410" width="136" height="28" rx="14" fill="#E3EDF9"/>
+  <text x="852" y="429" font-size="12.5" font-weight="700" fill="#1A56A8" text-anchor="middle">04 · Resultados</text>
+
+  <!-- A4 -->
+  <rect x="1018" y="250" width="220" height="210" rx="18" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="1018" y="250" width="220" height="6" rx="3" fill="#1A56A8"/>
+  <text x="1040" y="296" font-size="18" font-weight="700" fill="#0F172A">Revisa el perfil</text>
+  <text x="1040" y="318" font-size="18" font-weight="700" fill="#0F172A">y decide</text>
+  <text x="1040" y="350" font-size="13.5" fill="#475569">Lee las opiniones de otros</text>
+  <text x="1040" y="370" font-size="13.5" fill="#475569">vecinos y confirma que</text>
+  <text x="1040" y="390" font-size="13.5" fill="#475569">trabaja en su zona.</text>
+  <rect x="1040" y="410" width="110" height="28" rx="14" fill="#E3EDF9"/>
+  <text x="1095" y="429" font-size="12.5" font-weight="700" fill="#1A56A8" text-anchor="middle">05 · Perfil</text>
+
+  <!-- A5 (contacto) -->
+  <rect x="1274" y="250" width="220" height="210" rx="18" fill="#FFFFFF" stroke="#D35400" stroke-width="2"/>
+  <rect x="1274" y="250" width="220" height="6" rx="3" fill="#D35400"/>
+  <text x="1296" y="296" font-size="18" font-weight="700" fill="#0F172A">Escribe por el</text>
+  <text x="1296" y="318" font-size="18" font-weight="700" fill="#0F172A">chat interno</text>
+  <text x="1296" y="350" font-size="13.5" fill="#475569">Manda una plantilla ya</text>
+  <text x="1296" y="370" font-size="13.5" fill="#475569">armada. No entrega su</text>
+  <text x="1296" y="390" font-size="13.5" fill="#475569">número de teléfono.</text>
+  <rect x="1296" y="410" width="106" height="28" rx="14" fill="#FDEBDD"/>
+  <text x="1349" y="429" font-size="12.5" font-weight="700" fill="#A64200" text-anchor="middle">06 · Chat</text>
+
+  <!-- A6 -->
+  <rect x="1530" y="250" width="220" height="210" rx="18" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="1530" y="250" width="220" height="6" rx="3" fill="#1A56A8"/>
+  <text x="1552" y="296" font-size="18" font-weight="700" fill="#0F172A">Califica el</text>
+  <text x="1552" y="318" font-size="18" font-weight="700" fill="#0F172A">trabajo hecho</text>
+  <text x="1552" y="350" font-size="13.5" fill="#475569">Desde el mismo hilo del chat:</text>
+  <text x="1552" y="370" font-size="13.5" fill="#475569">estrellas, etiquetas y un</text>
+  <text x="1552" y="390" font-size="13.5" fill="#475569">comentario breve.</text>
+  <rect x="1552" y="410" width="146" height="28" rx="14" fill="#E3EDF9"/>
+  <text x="1625" y="429" font-size="12.5" font-weight="700" fill="#1A56A8" text-anchor="middle">07 · Calificación</text>
+
+  <!-- ============ PUNTOS DE ENCUENTRO ============ -->
+  <line x1="1384" y1="466" x2="1384" y2="554" stroke="#D35400" stroke-width="2.5" stroke-dasharray="6 5"/>
+  <path d="M1378 472 l6 -8 l6 8" fill="none" stroke="#D35400" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1378 548 l6 8 l6 -8" fill="none" stroke="#D35400" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="1306" y="496" width="156" height="30" rx="15" fill="#D35400"/>
+  <text x="1384" y="516" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">Se conocen acá</text>
+
+  <line x1="1640" y1="466" x2="1640" y2="554" stroke="#1A56A8" stroke-width="2.5" stroke-dasharray="6 5"/>
+  <path d="M1634 548 l6 8 l6 -8" fill="none" stroke="#1A56A8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="1568" y="496" width="144" height="30" rx="15" fill="#1A56A8"/>
+  <text x="1640" y="516" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">Reputación</text>
+
+  <!-- ============ CARRIL PRESTADOR ============ -->
+  <rect x="40" y="560" width="190" height="210" rx="20" fill="#D35400"/>
+  <text x="64" y="608" font-size="13" font-weight="700" fill="#F8CBA6" letter-spacing="1.2">CARRIL B</text>
+  <text x="64" y="646" font-size="24" font-weight="700" fill="#FFFFFF">Prestador</text>
+  <text x="64" y="684" font-size="15" fill="#FBE3D0">Vive del oficio y</text>
+  <text x="64" y="706" font-size="15" fill="#FBE3D0">quiere que lo</text>
+  <text x="64" y="728" font-size="15" fill="#FBE3D0">encuentren.</text>
+
+  <!-- B1 -->
+  <rect x="250" y="560" width="220" height="210" rx="18" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="250" y="560" width="220" height="6" rx="3" fill="#D35400"/>
+  <text x="272" y="606" font-size="18" font-weight="700" fill="#0F172A">Crea su perfil</text>
+  <text x="272" y="628" font-size="18" font-weight="700" fill="#0F172A">en 3 pasos</text>
+  <text x="272" y="660" font-size="13.5" fill="#475569">Foto, oficio, zona y teléfono</text>
+  <text x="272" y="680" font-size="13.5" fill="#475569">privado. Sin formularios</text>
+  <text x="272" y="700" font-size="13.5" fill="#475569">largos ni documentación.</text>
+  <rect x="272" y="720" width="124" height="28" rx="14" fill="#FDEBDD"/>
+  <text x="334" y="739" font-size="12.5" font-weight="700" fill="#A64200" text-anchor="middle">09 · Registro</text>
+
+  <!-- B2 -->
+  <rect x="506" y="560" width="220" height="210" rx="18" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="506" y="560" width="220" height="6" rx="3" fill="#D35400"/>
+  <text x="528" y="606" font-size="18" font-weight="700" fill="#0F172A">Se marca</text>
+  <text x="528" y="628" font-size="18" font-weight="700" fill="#0F172A">«Disponible»</text>
+  <text x="528" y="660" font-size="13.5" fill="#475569">Un solo interruptor decide si</text>
+  <text x="528" y="680" font-size="13.5" fill="#475569">hoy aparece o no en las</text>
+  <text x="528" y="700" font-size="13.5" fill="#475569">búsquedas del barrio.</text>
+  <rect x="528" y="720" width="112" height="28" rx="14" fill="#FDEBDD"/>
+  <text x="584" y="739" font-size="12.5" font-weight="700" fill="#A64200" text-anchor="middle">08 · Panel</text>
+
+  <!-- B3 -->
+  <rect x="762" y="560" width="220" height="210" rx="18" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="762" y="560" width="220" height="6" rx="3" fill="#D35400"/>
+  <text x="784" y="606" font-size="18" font-weight="700" fill="#0F172A">Aparece en la</text>
+  <text x="784" y="628" font-size="18" font-weight="700" fill="#0F172A">zona del vecino</text>
+  <text x="784" y="660" font-size="13.5" fill="#475569">El filtro de cercanía lo</text>
+  <text x="784" y="680" font-size="13.5" fill="#475569">muestra solo si trabaja</text>
+  <text x="784" y="700" font-size="13.5" fill="#475569">dentro de ese radio.</text>
+  <rect x="784" y="720" width="136" height="28" rx="14" fill="#FDEBDD"/>
+  <text x="852" y="739" font-size="12.5" font-weight="700" fill="#A64200" text-anchor="middle">04 · Resultados</text>
+
+  <!-- B4 -->
+  <rect x="1018" y="560" width="220" height="210" rx="18" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="1018" y="560" width="220" height="6" rx="3" fill="#D35400"/>
+  <text x="1040" y="606" font-size="18" font-weight="700" fill="#0F172A">Su reputación</text>
+  <text x="1040" y="628" font-size="18" font-weight="700" fill="#0F172A">habla por él</text>
+  <text x="1040" y="660" font-size="13.5" fill="#475569">Puntaje, trabajos hechos y</text>
+  <text x="1040" y="680" font-size="13.5" fill="#475569">opiniones son lo que define</text>
+  <text x="1040" y="700" font-size="13.5" fill="#475569">si lo eligen a él.</text>
+  <rect x="1040" y="720" width="110" height="28" rx="14" fill="#FDEBDD"/>
+  <text x="1095" y="739" font-size="12.5" font-weight="700" fill="#A64200" text-anchor="middle">05 · Perfil</text>
+
+  <!-- B5 (contacto) -->
+  <rect x="1274" y="560" width="220" height="210" rx="18" fill="#FFFFFF" stroke="#D35400" stroke-width="2"/>
+  <rect x="1274" y="560" width="220" height="6" rx="3" fill="#D35400"/>
+  <text x="1296" y="606" font-size="18" font-weight="700" fill="#0F172A">Responde desde</text>
+  <text x="1296" y="628" font-size="18" font-weight="700" fill="#0F172A">su bandeja</text>
+  <text x="1296" y="660" font-size="13.5" fill="#475569">Las consultas llegan</text>
+  <text x="1296" y="680" font-size="13.5" fill="#475569">ordenadas por fecha, con las</text>
+  <text x="1296" y="700" font-size="13.5" fill="#475569">nuevas marcadas.</text>
+  <rect x="1296" y="720" width="126" height="28" rx="14" fill="#FDEBDD"/>
+  <text x="1359" y="739" font-size="12.5" font-weight="700" fill="#A64200" text-anchor="middle">08 · Bandeja</text>
+
+  <!-- B6 -->
+  <rect x="1530" y="560" width="220" height="210" rx="18" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="1530" y="560" width="220" height="6" rx="3" fill="#D35400"/>
+  <text x="1552" y="606" font-size="18" font-weight="700" fill="#0F172A">Suma una</text>
+  <text x="1552" y="628" font-size="18" font-weight="700" fill="#0F172A">calificación más</text>
+  <text x="1552" y="660" font-size="13.5" fill="#475569">Sube su puntaje y mejora su</text>
+  <text x="1552" y="680" font-size="13.5" fill="#475569">posición frente al próximo</text>
+  <text x="1552" y="700" font-size="13.5" fill="#475569">vecino que busque.</text>
+  <rect x="1552" y="720" width="110" height="28" rx="14" fill="#FDEBDD"/>
+  <text x="1607" y="739" font-size="12.5" font-weight="700" fill="#A64200" text-anchor="middle">05 · Perfil</text>
+
+  <!-- Bucle de retorno -->
+  <path d="M1640 780 v34 h-1420 v-40" fill="none" stroke="#1A56A8" stroke-width="2.5" stroke-dasharray="7 6" stroke-linecap="round"/>
+  <path d="M214 780 l6 -8 l6 8" fill="none" stroke="#1A56A8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="820" y="800" width="240" height="30" rx="15" fill="#E3EDF9"/>
+  <text x="940" y="820" font-size="13" font-weight="700" fill="#1A56A8" text-anchor="middle">Mejor puntaje = más consultas</text>
+
+  <!-- ============ MOMENTOS CRÍTICOS ============ -->
+  <text x="40" y="882" font-size="15" font-weight="700" fill="#0F172A" letter-spacing="1.2">MOMENTOS QUE DEFINEN SI LA APP SIRVE</text>
+  <line x1="40" y1="898" x2="1780" y2="898" stroke="#E2E8F0" stroke-width="1.5"/>
+
+  <rect x="40" y="916" width="417" height="140" rx="18" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="40" y="916" width="6" height="140" rx="3" fill="#1A56A8"/>
+  <text x="68" y="952" font-size="17" font-weight="700" fill="#0F172A">Los primeros 10 segundos</text>
+  <text x="68" y="982" font-size="14" fill="#475569">Si en la home no reconoce su problema en un</text>
+  <text x="68" y="1004" font-size="14" fill="#475569">ícono, se va. Por eso seis tiles grandes, nombres</text>
+  <text x="68" y="1026" font-size="14" fill="#475569">en criollo y nada más compitiendo por atención.</text>
+
+  <rect x="477" y="916" width="417" height="140" rx="18" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="477" y="916" width="6" height="140" rx="3" fill="#D35400"/>
+  <text x="505" y="952" font-size="17" font-weight="700" fill="#0F172A">El salto al chat</text>
+  <text x="505" y="982" font-size="14" fill="#475569">Es el único punto de conversión del recorrido.</text>
+  <text x="505" y="1004" font-size="14" fill="#475569">Un solo botón naranja por pantalla, siempre en el</text>
+  <text x="505" y="1026" font-size="14" fill="#475569">mismo lugar, con plantillas para romper el hielo.</text>
+
+  <rect x="914" y="916" width="417" height="140" rx="18" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="914" y="916" width="6" height="140" rx="3" fill="#1E8E4E"/>
+  <text x="942" y="952" font-size="17" font-weight="700" fill="#0F172A">La espera de la respuesta</text>
+  <text x="942" y="982" font-size="14" fill="#475569">El vecino no sabe si le van a contestar. El chip</text>
+  <text x="942" y="1004" font-size="14" fill="#475569">«Disponible» y el «Leído» en el mensaje bajan esa</text>
+  <text x="942" y="1026" font-size="14" fill="#475569">incertidumbre sin prometer nada falso.</text>
+
+  <rect x="1351" y="916" width="417" height="140" rx="18" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="1351" y="916" width="6" height="140" rx="3" fill="#F5A623"/>
+  <text x="1379" y="952" font-size="17" font-weight="700" fill="#0F172A">El cierre del trabajo</text>
+  <text x="1379" y="982" font-size="14" fill="#475569">Si hay que buscar dónde calificar, nadie califica y</text>
+  <text x="1379" y="1004" font-size="14" fill="#475569">el sistema de reputación muere. Por eso la tarjeta</text>
+  <text x="1379" y="1026" font-size="14" fill="#475569">aparece sola dentro del hilo de la conversación.</text>
+</svg>

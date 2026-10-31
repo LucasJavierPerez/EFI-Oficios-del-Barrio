@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844" font-family="Inter, Helvetica, Arial, sans-serif">
+  <style>
+    .bg{fill:#FFFFFF}
+    .hero{fill:#E9EAEC}
+    .card{fill:#FFFFFF;stroke:#B0B4BB;stroke-width:1.5}
+    .cardMuted{fill:#FFFFFF;stroke:#D6D9DE;stroke-width:1.5}
+    .iconBox{fill:#E9EAEC;stroke:#9AA0A9;stroke-width:1.5}
+    .line{fill:#C7CBD1}
+    .txt{fill:#3A3F47;font-weight:700}
+    .txtMuted{fill:#6B7078}
+    .icon{stroke:#6B7078;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  </style>
+
+  <rect width="390" height="844" class="bg"/>
+  <rect x="0" y="0" width="390" height="420" class="hero"/>
+  <line x1="0" y1="420" x2="390" y2="420" stroke="#B0B4BB" stroke-width="1.5"/>
+
+  <!-- Logo placeholder -->
+  <rect x="147" y="120" width="96" height="96" rx="24" fill="#FFFFFF" stroke="#9AA0A9" stroke-width="2"/>
+  <circle cx="195" cy="168" r="20" fill="none" stroke="#9AA0A9" stroke-width="2.4"/>
+
+  <text x="195" y="264" font-size="28" text-anchor="middle" class="txt">Oficios del Barrio</text>
+  <rect x="115" y="284" width="160" height="10" rx="5" class="line"/>
+  <rect x="135" y="302" width="120" height="10" rx="5" class="line"/>
+
+  <!-- Selector de rol -->
+  <text x="32" y="470" font-size="20" class="txt">¿Cómo querés empezar?</text>
+
+  <rect x="24" y="498" width="342" height="120" rx="20" class="card"/>
+  <rect x="48" y="522" width="64" height="64" rx="18" class="iconBox"/>
+  <g class="icon" transform="translate(80,554)">
+    <circle cx="0" cy="-8" r="9"/>
+    <line x1="7" y1="-1" x2="16" y2="8"/>
+  </g>
+  <text x="132" y="548" font-size="18" class="txt">Necesito un servicio</text>
+  <rect x="132" y="562" width="180" height="9" rx="4.5" class="line"/>
+  <rect x="132" y="580" width="140" height="9" rx="4.5" class="line"/>
+
+  <rect x="24" y="634" width="342" height="120" rx="20" class="cardMuted"/>
+  <rect x="48" y="658" width="64" height="64" rx="18" class="iconBox"/>
+  <g class="icon" transform="translate(80,690)">
+    <path d="M-8 8 L8 -8"/>
+    <path d="M2 -8 h6 v6"/>
+    <path d="M-8 -2 v6 h6"/>
+  </g>
+  <text x="132" y="684" font-size="18" class="txt">Ofrezco mi oficio</text>
+  <rect x="132" y="698" width="180" height="9" rx="4.5" class="line"/>
+  <rect x="132" y="716" width="150" height="9" rx="4.5" class="line"/>
+
+  <text x="195" y="800" font-size="15" text-anchor="middle" class="txtMuted">¿Ya tenés cuenta? <tspan class="txt" fill="#3A3F47">Ingresar</tspan></text>
+
+  <rect x="125" y="826" width="140" height="5" rx="2.5" fill="#3A3F47" opacity="0.25"/>
+</svg>

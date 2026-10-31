@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844" font-family="Inter, Helvetica, Arial, sans-serif">
+  <style>
+    .bg{fill:#FAFAFA}
+    .hero{fill:#D6D9DE}
+    .card{fill:#FFFFFF;stroke:#D6D9DE;stroke-width:1.5}
+    .cardActive{fill:#FFFFFF;stroke:#3A3F47;stroke-width:2}
+    .line{fill:#C7CBD1}
+    .lineLight{fill:#DADDE1}
+    .txt{fill:#3A3F47;font-weight:700}
+    .txtMuted{fill:#6B7078}
+    .icon{stroke:#6B7078;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .avatar{fill:#DADDE1;stroke:#9AA0A9;stroke-width:1.5}
+  </style>
+
+  <rect width="390" height="844" class="bg"/>
+
+  <!-- Header -->
+  <path d="M0 0 H390 V172 Q390 200 362 200 H28 Q0 200 0 172 Z" class="hero"/>
+  <text x="24" y="88" font-size="22" class="txt">Hola, Miguel</text>
+  <rect x="24" y="100" width="200" height="10" rx="5" class="lineLight"/>
+  <circle cx="348" cy="92" r="22" class="avatar"/>
+
+  <!-- Panel de estado -->
+  <rect x="24" y="150" width="342" height="96" rx="20" class="card"/>
+  <text x="44" y="182" font-size="11" font-weight="700" fill="#9AA0A9" letter-spacing="0.8">MI ESTADO</text>
+  <circle cx="50" cy="206" r="6" class="avatar"/>
+  <text x="66" y="212" font-size="18" font-weight="700" class="txt">Disponible</text>
+  <rect x="44" y="222" width="220" height="9" rx="4.5" class="lineLight"/>
+  <rect x="286" y="188" width="60" height="34" rx="17" fill="#3A3F47"/>
+  <circle cx="329" cy="205" r="13" fill="#FFFFFF"/>
+
+  <!-- Métricas -->
+  <rect x="24" y="262" width="108" height="82" rx="18" class="card"/>
+  <text x="78" y="298" font-size="22" font-weight="700" text-anchor="middle" class="txt">5</text>
+  <text x="78" y="318" font-size="12" text-anchor="middle" class="txtMuted">consultas</text>
+  <text x="78" y="334" font-size="12" text-anchor="middle" class="txtMuted">sin leer</text>
+
+  <rect x="141" y="262" width="108" height="82" rx="18" class="card"/>
+  <text x="195" y="298" font-size="22" font-weight="700" text-anchor="middle" class="txt">23</text>
+  <text x="195" y="318" font-size="12" text-anchor="middle" class="txtMuted">trabajos</text>
+  <text x="195" y="334" font-size="12" text-anchor="middle" class="txtMuted">calificados</text>
+
+  <rect x="258" y="262" width="108" height="82" rx="18" class="card"/>
+  <text x="312" y="298" font-size="22" font-weight="700" text-anchor="middle" class="txt">4,8</text>
+  <text x="312" y="334" font-size="12" text-anchor="middle" class="txtMuted">puntaje</text>
+
+  <!-- Bandeja -->
+  <text x="24" y="386" font-size="19" class="txt">Consultas recibidas</text>
+  <rect x="316" y="368" width="50" height="26" rx="13" fill="#EDEEF0"/>
+  <text x="341" y="386" font-size="12" font-weight="700" text-anchor="middle" class="txtMuted">5 nuevas</text>
+
+  <!-- Item 1 (no leído) -->
+  <rect x="24" y="402" width="342" height="82" rx="18" class="cardActive"/>
+  <circle cx="62" cy="443" r="24" class="avatar"/>
+  <rect x="98" y="424" width="90" height="11" rx="5.5" class="line"/>
+  <rect x="320" y="424" width="26" height="9" rx="4.5" class="lineLight"/>
+  <rect x="98" y="448" width="200" height="9" rx="4.5" class="line"/>
+  <rect x="98" y="466" width="160" height="9" rx="4.5" class="line"/>
+  <circle cx="352" cy="452" r="8" fill="#3A3F47"/>
+  <text x="352" y="457" font-size="10" font-weight="700" fill="#FFFFFF" text-anchor="middle">2</text>
+
+  <!-- Item 2 -->
+  <rect x="24" y="494" width="342" height="82" rx="18" class="card"/>
+  <circle cx="62" cy="535" r="24" class="avatar"/>
+  <rect x="98" y="516" width="90" height="11" rx="5.5" class="line"/>
+  <rect x="320" y="516" width="26" height="9" rx="4.5" class="lineLight"/>
+  <rect x="98" y="540" width="200" height="9" rx="4.5" class="lineLight"/>
+  <rect x="98" y="558" width="160" height="9" rx="4.5" class="lineLight"/>
+
+  <!-- Item 3 -->
+  <rect x="24" y="586" width="342" height="82" rx="18" class="card"/>
+  <circle cx="62" cy="627" r="24" class="avatar"/>
+  <rect x="98" y="608" width="90" height="11" rx="5.5" class="line"/>
+  <rect x="320" y="608" width="26" height="9" rx="4.5" class="lineLight"/>
+  <rect x="98" y="632" width="200" height="9" rx="4.5" class="lineLight"/>
+  <rect x="98" y="650" width="160" height="9" rx="4.5" class="lineLight"/>
+
+  <!-- Item 4 -->
+  <rect x="24" y="678" width="342" height="82" rx="18" class="card"/>
+  <circle cx="62" cy="719" r="24" class="avatar"/>
+  <rect x="98" y="700" width="90" height="11" rx="5.5" class="line"/>
+  <rect x="320" y="700" width="26" height="9" rx="4.5" class="lineLight"/>
+  <rect x="98" y="724" width="200" height="9" rx="4.5" class="lineLight"/>
+  <rect x="98" y="742" width="160" height="9" rx="4.5" class="lineLight"/>
+
+  <!-- Barra inferior -->
+  <rect x="0" y="780" width="390" height="64" fill="#FFFFFF"/>
+  <line x1="0" y1="780" x2="390" y2="780" stroke="#D6D9DE" stroke-width="1.5"/>
+  <g transform="translate(65,802)">
+    <path d="M-11 2 L0 -8 L11 2 V11 H-11 Z" fill="#3A3F47"/>
+    <text x="0" y="28" font-size="11" font-weight="700" fill="#3A3F47" text-anchor="middle">Panel</text>
+  </g>
+  <g transform="translate(195,802)">
+    <rect x="-11" y="-8" width="22" height="17" rx="3" class="icon"/>
+    <circle cx="13" cy="-9" r="7" fill="#3A3F47"/>
+    <text x="13" y="-5" font-size="9" font-weight="700" fill="#FFFFFF" text-anchor="middle">5</text>
+    <text x="0" y="28" font-size="11" class="txtMuted" text-anchor="middle">Consultas</text>
+  </g>
+  <g transform="translate(325,802)">
+    <circle cx="0" cy="-4" r="6" class="icon"/>
+    <path d="M-10 11 a10 10 0 0 1 20 0" class="icon"/>
+    <text x="0" y="28" font-size="11" class="txtMuted" text-anchor="middle">Mi perfil</text>
+  </g>
+</svg>

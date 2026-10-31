@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844" font-family="Inter, Helvetica, Arial, sans-serif">
+  <style>
+    .bg{fill:#FAFAFA}
+    .hero{fill:#E9EAEC}
+    .card{fill:#FFFFFF;stroke:#D6D9DE;stroke-width:1.5}
+    .tile{fill:#FFFFFF;stroke:#D6D9DE;stroke-width:1.5}
+    .tileMuted{fill:#EDEEF0}
+    .line{fill:#C7CBD1}
+    .lineLight{fill:#DADDE1}
+    .txt{fill:#3A3F47;font-weight:700}
+    .txtMuted{fill:#6B7078}
+    .icon{stroke:#6B7078;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .avatar{fill:#DADDE1;stroke:#9AA0A9;stroke-width:1.5}
+  </style>
+
+  <rect width="390" height="844" class="bg"/>
+
+  <!-- Header -->
+  <path d="M0 0 H390 V162 Q390 190 362 190 H28 Q0 190 0 162 Z" class="hero"/>
+  <text x="24" y="86" font-size="22" class="txt">Hola, Lucas</text>
+  <g class="icon" transform="translate(24,102)">
+    <circle cx="7" cy="7" r="7"/>
+  </g>
+  <rect x="46" y="108" width="150" height="9" rx="4.5" class="line"/>
+  <circle cx="348" cy="92" r="22" class="avatar"/>
+
+  <!-- Buscador -->
+  <rect x="24" y="158" width="342" height="60" rx="18" class="card"/>
+  <circle cx="56" cy="186" r="9" class="icon"/>
+  <line x1="63" y1="193" x2="70" y2="200" class="icon"/>
+  <rect x="86" y="182" width="150" height="9" rx="4.5" class="lineLight"/>
+  <rect x="318" y="170" width="36" height="36" rx="12" class="tileMuted" stroke="#9AA0A9" stroke-width="1.5"/>
+
+  <!-- Oficios -->
+  <text x="24" y="264" font-size="19" class="txt">¿Qué necesitás resolver?</text>
+
+  <rect x="24" y="284" width="106" height="106" rx="20" class="tile"/>
+  <circle cx="77" cy="322" r="16" class="icon"/>
+  <text x="77" y="372" font-size="14" text-anchor="middle" class="txtMuted">Plomero</text>
+
+  <rect x="142" y="284" width="106" height="106" rx="20" class="tile"/>
+  <circle cx="195" cy="322" r="16" class="icon"/>
+  <text x="195" y="372" font-size="14" text-anchor="middle" class="txtMuted">Gasista</text>
+
+  <rect x="260" y="284" width="106" height="106" rx="20" class="tile"/>
+  <circle cx="313" cy="322" r="16" class="icon"/>
+  <text x="313" y="372" font-size="14" text-anchor="middle" class="txtMuted">Electricista</text>
+
+  <rect x="24" y="400" width="106" height="106" rx="20" class="tile"/>
+  <circle cx="77" cy="438" r="16" class="icon"/>
+  <text x="77" y="488" font-size="14" text-anchor="middle" class="txtMuted">Pintor</text>
+
+  <rect x="142" y="400" width="106" height="106" rx="20" class="tile"/>
+  <circle cx="195" cy="438" r="16" class="icon"/>
+  <text x="195" y="488" font-size="14" text-anchor="middle" class="txtMuted">Albañil</text>
+
+  <rect x="260" y="400" width="106" height="106" rx="20" class="tileMuted" stroke="#9AA0A9" stroke-width="1.5"/>
+  <g class="icon" transform="translate(313,438)">
+    <line x1="-10" y1="0" x2="10" y2="0"/><line x1="0" y1="-10" x2="0" y2="10"/>
+  </g>
+  <text x="313" y="488" font-size="14" text-anchor="middle" class="txtMuted">Ver todos</text>
+
+  <!-- Cerca tuyo -->
+  <text x="24" y="548" font-size="19" class="txt">Cerca tuyo</text>
+  <text x="366" y="548" font-size="14" text-anchor="end" class="txtMuted">Ver todos</text>
+
+  <rect x="24" y="566" width="342" height="94" rx="20" class="card"/>
+  <circle cx="66" cy="613" r="27" class="avatar"/>
+  <rect x="106" y="588" width="120" height="11" rx="5.5" class="line"/>
+  <rect x="106" y="608" width="150" height="9" rx="4.5" class="lineLight"/>
+  <g class="icon" transform="translate(106,635)">
+    <path d="M6 0 L7.5 4.2 L12 4.2 L8.4 6.9 L9.8 11 L6 8.4 L2.2 11 L3.6 6.9 L0 4.2 L4.5 4.2 Z"/>
+  </g>
+  <rect x="130" y="628" width="60" height="10" rx="5" class="lineLight"/>
+  <rect x="286" y="600" width="64" height="30" rx="15" fill="#3A3F47"/>
+  <text x="318" y="620" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">Chat</text>
+
+  <rect x="24" y="674" width="342" height="94" rx="20" class="card"/>
+  <circle cx="66" cy="721" r="27" class="avatar"/>
+  <rect x="106" y="696" width="120" height="11" rx="5.5" class="line"/>
+  <rect x="106" y="716" width="150" height="9" rx="4.5" class="lineLight"/>
+  <g class="icon" transform="translate(106,743)">
+    <path d="M6 0 L7.5 4.2 L12 4.2 L8.4 6.9 L9.8 11 L6 8.4 L2.2 11 L3.6 6.9 L0 4.2 L4.5 4.2 Z"/>
+  </g>
+  <rect x="130" y="736" width="60" height="10" rx="5" class="lineLight"/>
+  <rect x="286" y="708" width="64" height="30" rx="15" fill="#3A3F47"/>
+  <text x="318" y="728" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">Chat</text>
+
+  <!-- Barra inferior -->
+  <rect x="0" y="780" width="390" height="64" fill="#FFFFFF"/>
+  <line x1="0" y1="780" x2="390" y2="780" stroke="#D6D9DE" stroke-width="1.5"/>
+  <g transform="translate(49,802)">
+    <path d="M-11 2 L0 -8 L11 2 V11 H-11 Z" fill="#3A3F47"/>
+    <text x="0" y="28" font-size="11" font-weight="700" fill="#3A3F47" text-anchor="middle">Inicio</text>
+  </g>
+  <g transform="translate(146,802)">
+    <rect x="-11" y="-8" width="22" height="17" rx="3" class="icon"/>
+    <text x="0" y="28" font-size="11" class="txtMuted" text-anchor="middle">Mensajes</text>
+  </g>
+  <g transform="translate(244,802)">
+    <path d="M0 10 C-14 0 -12 -10 -5 -10 C-2 -10 0 -8 0 -6 C0 -8 2 -10 5 -10 C12 -10 14 0 0 10 Z" class="icon"/>
+    <text x="0" y="28" font-size="11" class="txtMuted" text-anchor="middle">Guardados</text>
+  </g>
+  <g transform="translate(341,802)">
+    <circle cx="0" cy="-4" r="6" class="icon"/>
+    <path d="M-10 11 a10 10 0 0 1 20 0" class="icon"/>
+    <text x="0" y="28" font-size="11" class="txtMuted" text-anchor="middle">Perfil</text>
+  </g>
+</svg>

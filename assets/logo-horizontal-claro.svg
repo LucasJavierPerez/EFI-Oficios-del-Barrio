@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 100" width="420" height="100">
+  <rect width="84" height="84" x="8" y="8" rx="20" fill="#1a56a8"/>
+  <path d="M50 22L22 46h10v26h14V55h8v17h14V46h10L50 22z" fill="#ffffff"/>
+  <circle cx="50" cy="43" r="7" fill="#d35400"/>
+  <text x="110" y="52" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="700" fill="#0f172a">Oficios del Barrio</text>
+  <text x="110" y="76" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="500" fill="#475569">El vecino que resuelve, a la vuelta de tu casa</text>
+</svg>

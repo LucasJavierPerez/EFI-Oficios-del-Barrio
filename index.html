@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Presentación Oficios del Barrio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+/* Layout: full-screen slide stage. Editorial paper, serif and hairline rules from the reference page;
+   ink and accents from the app's own palette. Like the app, each slide spends its orange only once. */
+:root {
+  --paper: #f2f0ea;
+  --panel: #fbfaf6;
+  --soft: #e6e5de;
+  --ink: #14243f;
+  --muted: #4f5a6b;
+  --rule: #d2cec2;
+  --blue: #1a56a8;
+  --blue-soft: #dfe8f5;
+  --orange: #d35400;
+  --green: #146b39;
+  --red: #b83a2b;
+  --veil: rgb(14 22 38 / .9);
+  --brand-night: #0f1d36;
+  /* The phone screens recreate the app itself, so they keep the app's light palette in both themes. */
+  --app-bg: #f5f7fa;
+  --app-surface: #ffffff;
+  --app-ink: #0f172a;
+  --app-muted: #475569;
+  --app-line: #e2e8f0;
+  --app-blue: #1a56a8;
+  --app-blue-soft: #e3edf9;
+  --app-orange: #d35400;
+  --app-green: #146b39;
+  --app-red: #dc2626;
+  --app-chat: #e9eef5;
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --shadow: 0 1px 1px rgb(20 36 63 / .05), 0 26px 50px -34px rgb(20 36 63 / .4);
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0e1626; --panel: #152036; --soft: #1c2940; --ink: #ebe7de; --muted: #a7b0bf;
+    --rule: #2b3953; --blue: #86adeb; --blue-soft: #1d2d4a; --orange: #f07a32; --green: #55b583;
+    --red: #e5735f; --veil: rgb(4 8 16 / .92);
+    --shadow: 0 1px 1px rgb(0 0 0 / .2), 0 26px 50px -30px rgb(0 0 0 / .7);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0e1626; --panel: #152036; --soft: #1c2940; --ink: #ebe7de; --muted: #a7b0bf;
+  --rule: #2b3953; --blue: #86adeb; --blue-soft: #1d2d4a; --orange: #f07a32; --green: #55b583;
+  --red: #e5735f; --veil: rgb(4 8 16 / .92);
+  --shadow: 0 1px 1px rgb(0 0 0 / .2), 0 26px 50px -30px rgb(0 0 0 / .7);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { height: 100%; }
+body {
+  margin: 0; overflow: hidden; background: var(--paper); color: var(--ink);
+  font: 400 18px/1.55 var(--sans); -webkit-font-smoothing: antialiased;
+  transition: background-color .4s, color .4s;
+}
+::selection { background: var(--blue-soft); }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+a { color: var(--blue); }
+
+/* ---------- Stage ---------- */
+.deck { position: relative; height: 100%; overflow: hidden; }
+.topbar {
+  position: absolute; inset: 0 0 auto; z-index: 5; display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding-top: calc(18px + env(safe-area-inset-top, 0px)); padding-bottom: 0;
+  padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px));
+  font: 600 11px/1 var(--sans); letter-spacing: .22em; text-transform: uppercase; color: var(--muted); pointer-events: none;
+}
+.wordmark { display: flex; align-items: center; gap: 10px; color: var(--ink); }
+.wordmark i { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); }
+.section-name { text-align: right; transition: opacity .3s; }
+
+.slide {
+  position: absolute; inset: 0; display: flex; align-items: center;
+  padding-block: 72px 84px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  overflow: hidden; visibility: hidden; opacity: 0; transform: translateY(32px);
+  transition: opacity .5s var(--ease), transform .75s var(--ease), visibility 0s linear .75s;
+}
+.slide.is-past { transform: translateY(-32px); }
+.slide.is-active { visibility: visible; opacity: 1; transform: none; transition: opacity .5s var(--ease), transform .75s var(--ease), visibility 0s; }
+.wrap { width: 100%; max-width: 1320px; margin-inline: auto; padding-inline: clamp(0px, 4vw, 64px); min-width: 0; }
+
+.slide.is-active [data-r] { animation: rise .8s var(--ease) both; animation-delay: calc(var(--i, 0) * 85ms + 150ms); }
+@keyframes rise { from { opacity: 0; transform: translateY(22px); } }
+
+/* ---------- Type ---------- */
+.kicker { font: 600 12px/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--blue); margin: 0 0 22px; }
+.display { font: 400 clamp(60px, 10vw, 156px)/.92 var(--serif); letter-spacing: -.03em; margin: 0; }
+.display em, h2 em { font-style: italic; }
+h2 { font: 400 clamp(38px, 5.2vw, 76px)/1.02 var(--serif); letter-spacing: -.02em; margin: 0 0 22px; text-wrap: balance; max-width: 18ch; }
+h3 { font: 500 clamp(21px, 1.9vw, 27px)/1.2 var(--serif); margin: 0 0 8px; text-wrap: balance; }
+p { margin: 0; }
+.lead { font: 400 clamp(20px, 2vw, 28px)/1.4 var(--serif); color: var(--muted); max-width: 42ch; text-wrap: pretty; }
+.body { font-size: clamp(16px, 1.3vw, 19px); color: var(--muted); max-width: 52ch; text-wrap: pretty; }
+.or { color: var(--orange); }
+.code { font: 500 .78em var(--mono); background: var(--soft); color: var(--ink); padding: 2px 7px; border-radius: 4px; white-space: nowrap; }
+.caption { font-size: 13px; color: var(--muted); margin-top: 14px; }
+.label { font: 600 11px/1.3 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+
+/* ---------- Layout helpers ---------- */
+.split { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(32px, 5vw, 88px); align-items: center; }
+.split > * { min-width: 0; }
+.center-col { display: flex; flex-direction: column; align-items: center; }
+.cols-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--ink); margin-top: clamp(28px, 5vh, 56px); }
+.cols-3 > * { padding: 22px 28px 0 0; min-width: 0; }
+.cols-3 > * + * { border-left: 1px solid var(--rule); padding-left: 28px; }
+.num { font: 400 clamp(46px, 5.4vw, 84px)/1 var(--serif); letter-spacing: -.02em; margin-bottom: 14px; font-variant-numeric: tabular-nums; }
+.idx { font: 500 13px/1 var(--mono); color: var(--muted); display: block; margin-bottom: 14px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 20px; border-radius: 999px;
+  border: 1.5px solid var(--ink); background: transparent; font-weight: 600; font-size: 15px; cursor: pointer; text-decoration: none; color: var(--ink);
+  transition: background-color .2s, color .2s, transform .2s;
+}
+.btn:hover { background: var(--ink); color: var(--paper); }
+.btn:active { transform: scale(.97); }
+.btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+/* ---------- HUD ---------- */
+.hud {
+  position: absolute; inset: auto 0 0; z-index: 6; display: flex; align-items: center; gap: 14px;
+  padding-top: 0; padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px));
+}
+.counter { font: 500 13px/1 var(--mono); font-variant-numeric: tabular-nums; color: var(--muted); }
+.counter b { color: var(--ink); font-weight: 500; }
+.hint { font-size: 12px; color: var(--muted); margin-left: 8px; }
+.hint kbd { font: 500 11px var(--mono); border: 1px solid var(--rule); border-bottom-width: 2px; border-radius: 4px; padding: 1px 6px; background: var(--panel); }
+.hud .spacer { flex: 1; }
+.iconbtn {
+  width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--rule); background: var(--panel); color: var(--ink);
+  display: grid; place-items: center; cursor: pointer; transition: border-color .2s, transform .2s;
+}
+.iconbtn:hover { border-color: var(--ink); }
+.iconbtn:active { transform: scale(.94); }
+.iconbtn svg { width: 18px; height: 18px; }
+.progress { position: absolute; inset: auto 0 0; height: 3px; background: var(--rule); z-index: 7; }
+.progress i { display: block; height: 100%; width: calc(var(--p, 0) * 100%); background: var(--blue); transition: width .7s var(--ease); }
+
+/* ---------- 01 Cover ---------- */
+.cover-sub { font: 400 clamp(22px, 2.4vw, 34px)/1.3 var(--serif); font-style: italic; color: var(--muted); margin-top: 26px; max-width: 26ch; }
+.meta { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--ink); margin-top: clamp(32px, 6vh, 64px); max-width: 860px; }
+.meta div { padding: 14px 20px 0 0; min-width: 0; }
+.meta dt { font: 600 11px/1.4 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.meta dd { margin: 6px 0 0; font: 400 clamp(16px, 1.4vw, 20px)/1.35 var(--serif); }
+.beacon { position: relative; width: min(30vw, 360px); aspect-ratio: 1; max-width: 100%; margin-inline: auto; display: grid; place-items: center; }
+.beacon img { position: relative; z-index: 2; width: 44%; height: auto; filter: drop-shadow(0 18px 30px rgb(26 86 168 / .35)); animation: bob 5s ease-in-out infinite; }
+.ring { position: absolute; inset: 0; margin: auto; width: 44%; aspect-ratio: 1; border-radius: 50%; border: 2px solid var(--orange); opacity: 0; animation: ping 3.6s var(--ease) infinite; }
+.ring:nth-of-type(2) { animation-delay: 1.2s; }
+.ring:nth-of-type(3) { animation-delay: 2.4s; }
+@keyframes ping { 0% { transform: scale(.85); opacity: .7; } 100% { transform: scale(2.3); opacity: 0; } }
+@keyframes bob { 50% { transform: translateY(-8px); } }
+.dist { position: absolute; z-index: 3; font: 500 12px/1 var(--mono); padding: 7px 11px; border-radius: 999px; background: var(--panel); border: 1px solid var(--rule); box-shadow: var(--shadow); white-space: nowrap; }
+.dist::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--green); margin-right: 7px; vertical-align: 1px; }
+.dist.d1 { top: 14%; left: 2%; } .dist.d2 { bottom: 18%; right: 0; } .dist.d3 { top: 6%; right: 14%; }
+
+/* ---------- 02 Problem ---------- */
+.pains { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
+.pains li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid var(--rule); }
+.pains .idx { margin: 0; }
+.pains .t { font: 400 clamp(20px, 2vw, 28px)/1.3 var(--serif); position: relative; justify-self: start; }
+.pains .t::after { content: ""; position: absolute; left: -2px; right: -2px; top: 54%; height: 2px; background: var(--orange); transform: scaleX(0); transform-origin: left; }
+.is-active .pains .t::after { animation: strike .6s var(--ease) forwards; animation-delay: calc(var(--i, 0) * 85ms + 1300ms); }
+@keyframes strike { to { transform: scaleX(1); } }
+.pains .s { grid-column: 2; font-size: 14px; color: var(--muted); }
+.sources { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+.sources span { font-size: 14px; padding: 6px 14px; border-radius: 999px; border: 1px dashed var(--rule); color: var(--muted); }
+
+/* ---------- 03 Idea ---------- */
+.trades { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.trade { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px 8px 10px; border-radius: 999px; background: var(--panel); border: 1px solid var(--rule); font-size: 15px; font-weight: 500; }
+.trade svg { width: 22px; height: 22px; padding: 3px; border-radius: 50%; background: var(--blue-soft); color: var(--blue); }
+
+/* ---------- Phone + app recreation ---------- */
+.phone {
+  position: relative; height: min(66vh, 640px); aspect-ratio: 390 / 844; max-width: 100%; margin-inline: auto;
+  border-radius: 38px; padding: 9px; background: #0b1424; box-shadow: var(--shadow), 0 0 0 1px var(--rule);
+}
+.screen { position: relative; height: 100%; border-radius: 30px; overflow: hidden; background: var(--app-bg); color: var(--app-ink); font-size: 13px; }
+.app-head { background: var(--app-blue); color: #fff; padding: 30px 14px 12px; display: flex; align-items: center; gap: 10px; }
+.av { flex: none; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 13px; background: #fff; color: var(--app-blue); }
+.app-head b { display: block; font-size: 14px; }
+.app-head small { font-size: 11.5px; opacity: .9; }
+.chat-body { position: absolute; inset: 78px 0 64px; background: var(--app-chat); padding: 14px 12px; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; overflow: hidden; }
+.bub { max-width: 82%; padding: 8px 11px 6px; border-radius: 14px; line-height: 1.35; box-shadow: 0 1px 1px rgb(15 23 42 / .08); animation: pop .4s var(--ease) both; }
+.bub small { display: block; text-align: right; font-size: 10.5px; margin-top: 3px; opacity: .75; }
+.bub.out { align-self: flex-end; background: var(--app-blue); color: #fff; border-bottom-right-radius: 4px; }
+.bub.in { align-self: flex-start; background: var(--app-surface); color: var(--app-ink); border-bottom-left-radius: 4px; }
+.typing { align-self: flex-start; background: var(--app-surface); border-radius: 14px; padding: 10px 12px; display: flex; gap: 4px; animation: pop .3s var(--ease) both; }
+.typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--app-muted); animation: blink 1s infinite; }
+.typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes blink { 50% { opacity: .25; transform: translateY(-2px); } }
+@keyframes pop { from { opacity: 0; transform: translateY(10px) scale(.96); } }
+.sys { align-self: center; font-size: 11px; color: var(--app-muted); background: var(--app-surface); border-radius: 999px; padding: 4px 10px; animation: pop .4s var(--ease) both; }
+.rate-card { background: var(--app-surface); border-radius: 14px; padding: 12px; animation: pop .45s var(--ease) both; box-shadow: 0 2px 8px rgb(15 23 42 / .08); }
+.rate-card b { font-size: 13px; }
+.stars-row { display: flex; gap: 2px; margin: 6px 0 2px; font-size: 22px; color: #cbd5e1; }
+.stars-row .on { color: #f2b01e; }
+.rate-word { font-size: 12px; font-weight: 600; color: var(--app-blue); min-height: 1.2em; }
+.mini-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.mini-chips span { font-size: 11px; padding: 4px 9px; border-radius: 999px; border: 1px solid var(--app-line); color: var(--app-muted); transition: all .3s; }
+.mini-chips span.sel { background: var(--app-blue); border-color: var(--app-blue); color: #fff; }
+.composer { position: absolute; inset: auto 0 0; height: 64px; background: var(--app-surface); border-top: 1px solid var(--app-line); display: flex; align-items: center; gap: 8px; padding: 0 10px; }
+.composer .field { flex: 1; height: 40px; border-radius: 999px; background: var(--app-bg); border: 1px solid var(--app-line); color: var(--app-muted); font-size: 12px; display: flex; align-items: center; padding: 0 14px; }
+.composer .send { width: 40px; height: 40px; border-radius: 50%; background: var(--app-blue); }
+.quick { display: flex; gap: 6px; align-self: flex-end; animation: pop .4s var(--ease) both; }
+.quick span { font-size: 11px; padding: 6px 10px; border-radius: 999px; background: var(--app-surface); border: 1px solid var(--app-blue); color: var(--app-blue); font-weight: 600; }
+
+/* ---------- 05 Brand ---------- */
+.brand-grid { display: grid; grid-template-columns: .7fr 1fr 1fr; gap: 16px; margin-top: clamp(28px, 5vh, 52px); }
+.brand-card { border: 1px solid var(--rule); border-radius: 4px; padding: 26px; background: var(--panel); display: flex; flex-direction: column; gap: 18px; justify-content: space-between; min-width: 0; box-shadow: var(--shadow); }
+.brand-card.night { background: var(--brand-night); border-color: var(--brand-night); }
+.brand-card.night .label { color: #b9c3d3; }
+.brand-card.lightbg { background: #ffffff; }
+.brand-card.lightbg .label { color: #4f5a6b; }
+.brand-card img { width: 100%; height: auto; max-height: 110px; object-fit: contain; object-position: left center; }
+.brand-card .icon-img { width: 96px; height: 96px; transition: transform .5s var(--ease); }
+.brand-card:hover .icon-img { transform: rotate(-6deg) scale(1.06); }
+.quote { font: 400 clamp(34px, 4.6vw, 68px)/1.08 var(--serif); font-style: italic; letter-spacing: -.02em; margin: 0; max-width: 22ch; text-wrap: balance; }
+.quote .mark { color: var(--orange); }
+
+/* ---------- 06 Value ---------- */
+.vlist { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
+.vlist li { padding: 16px 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; }
+.vlist .idx { margin: 4px 0 0; }
+.vlist p { font-size: 15px; color: var(--muted); margin-top: 2px; }
+.pcard { width: min(100%, 380px); margin-inline: auto; background: var(--app-surface); color: var(--app-ink); border-radius: 18px; padding: 20px; box-shadow: var(--shadow), 0 0 0 1px var(--app-line); }
+.pcard-top { display: flex; gap: 12px; align-items: center; }
+.pcard .av { width: 54px; height: 54px; font-size: 18px; background: var(--app-blue); color: #fff; }
+.pcard h4 { margin: 0; font-size: 18px; }
+.pcard .sub { font-size: 13px; color: var(--app-muted); }
+.badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .03em; padding: 3px 9px; border-radius: 999px; background: var(--app-blue-soft); color: var(--app-blue); margin-top: 4px; }
+.pcard-stats { display: flex; gap: 16px; margin: 16px 0; font-size: 13px; color: var(--app-muted); }
+.pcard-stats b { color: var(--app-ink); }
+.avail { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; border-radius: 12px; background: var(--app-bg); border: 1px solid var(--app-line); }
+.avail-txt { font-weight: 700; font-size: 14px; color: var(--app-green); transition: color .3s; }
+.avail-txt.off { color: var(--app-red); }
+.switch { position: relative; width: 56px; height: 32px; border-radius: 999px; border: 0; background: var(--app-green); cursor: pointer; transition: background-color .3s; flex: none; }
+.switch::after { content: ""; position: absolute; top: 3px; left: 27px; width: 26px; height: 26px; border-radius: 50%; background: #fff; box-shadow: 0 2px 4px rgb(0 0 0 / .2); transition: left .3s var(--ease); }
+.switch[aria-checked="false"] { background: #94a3b8; }
+.switch[aria-checked="false"]::after { left: 3px; }
+.cta { width: 100%; height: 56px; margin-top: 14px; border: 0; border-radius: 14px; background: var(--app-orange); color: #fff; font-weight: 700; font-size: 16px; box-shadow: 0 6px 14px -6px rgb(211 84 0 / .7); cursor: pointer; transition: background-color .3s, box-shadow .3s, transform .15s; }
+.cta:disabled { background: #cbd5e1; color: #475569; box-shadow: none; cursor: not-allowed; }
+.try { text-align: center; margin-top: 14px; font-size: 13px; color: var(--muted); }
+
+/* ---------- 08 Divider ---------- */
+.pillars { list-style: none; margin: clamp(28px, 5vh, 56px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.pillars li { border: 1px solid var(--rule); border-radius: 4px; padding: 24px; background: var(--panel); box-shadow: var(--shadow); min-width: 0; transition: transform .35s var(--ease); }
+.pillars li:hover { transform: translateY(-6px); }
+.pillars .big { font: 400 clamp(60px, 7vw, 108px)/.9 var(--serif); color: transparent; -webkit-text-stroke: 1.5px var(--ink); display: block; margin-bottom: 18px; }
+.also { margin-top: 22px; font-size: 15px; color: var(--muted); }
+
+/* ---------- 09 Pillar 1 ---------- */
+.pull { font: 400 clamp(20px, 1.9vw, 27px)/1.35 var(--serif); font-style: italic; border-left: 3px solid var(--blue); padding-left: 18px; margin: 0 0 22px; max-width: 40ch; }
+.facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--rule); }
+.facts li { padding: 11px 0; border-bottom: 1px solid var(--rule); font-size: clamp(14px, 1.15vw, 16px); color: var(--muted); }
+.facts b { color: var(--ink); font-weight: 600; }
+.rate { width: min(100%, 400px); margin-inline: auto; background: var(--app-surface); color: var(--app-ink); border-radius: 18px; padding: 24px; box-shadow: var(--shadow), 0 0 0 1px var(--app-line); text-align: center; }
+.rate h4 { margin: 0 0 4px; font-size: 18px; }
+.rate .sub { font-size: 13px; color: var(--app-muted); }
+.stars { display: flex; justify-content: center; gap: 4px; margin: 16px 0 6px; }
+.star { width: 52px; height: 52px; border: 0; background: none; padding: 4px; cursor: pointer; border-radius: 10px; color: #cbd5e1; transition: color .2s, transform .2s; }
+.star svg { width: 100%; height: 100%; }
+.star.on { color: #f2b01e; }
+.star:hover { transform: scale(1.12); }
+.star:focus-visible { outline: 3px solid var(--app-blue); outline-offset: 0; }
+.rword { font-weight: 700; color: var(--app-blue); font-size: 17px; min-height: 1.4em; }
+.chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 16px; }
+.chip { min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--app-line); background: var(--app-surface); color: var(--app-muted); font-size: 14px; font-weight: 500; cursor: pointer; transition: all .2s; }
+.chip[aria-pressed="true"] { background: var(--app-blue); color: #fff; border: 2px solid var(--app-blue); }
+.chip:focus-visible { outline: 3px solid var(--app-blue); outline-offset: 2px; }
+
+/* ---------- 10 Pillar 2 ---------- */
+.laws { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--ink); margin-top: 26px; }
+.laws > div { padding: 14px 18px 14px 0; border-bottom: 1px solid var(--rule); min-width: 0; }
+.laws > div:nth-child(even) { padding-left: 18px; border-left: 1px solid var(--rule); }
+.laws b { display: block; font: 500 19px/1.2 var(--serif); margin-bottom: 4px; }
+.laws p { font-size: 14px; color: var(--muted); }
+.hier { position: relative; width: min(100%, 420px); margin-inline: auto; display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 0 14px; }
+.lvl-tag { align-self: center; text-align: right; font: 500 12px/1.3 var(--mono); color: var(--muted); }
+.lvl-tag b { display: block; font: 400 30px/1 var(--serif); color: var(--ink); }
+.prof { grid-column: 2; background: var(--app-surface); color: var(--app-ink); box-shadow: 0 0 0 1px var(--app-line); padding: 14px 16px; }
+.prof.l1 { border-radius: 16px 16px 0 0; display: flex; align-items: center; gap: 12px; background: var(--app-blue); color: #fff; box-shadow: none; }
+.prof.l1 .av { width: 56px; height: 56px; font-size: 19px; }
+.prof.l1 b { font-size: 20px; display: block; }
+.prof.l1 .badge { background: rgb(255 255 255 / .18); color: #fff; }
+.statbox { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.statbox div { background: var(--app-bg); border-radius: 10px; padding: 10px 6px; text-align: center; }
+.statbox b { display: block; font-size: 24px; font-variant-numeric: tabular-nums; }
+.statbox span { font-size: 11px; color: var(--app-muted); }
+.bars i { display: block; height: 8px; border-radius: 4px; background: var(--app-line); margin: 7px 0; }
+.bars i:nth-child(1) { width: 40%; background: #cbd5e1; } .bars i:nth-child(3) { width: 82%; } .bars i:nth-child(4) { width: 64%; }
+.prof.l4 { border-radius: 0 0 16px 16px; padding: 12px 16px 16px; }
+.prof.l4 .cta { margin: 0; height: 52px; }
+.hier .row-gap { grid-column: 1 / -1; height: 2px; }
+
+/* ---------- 11 Pillar 3 ---------- */
+.swatches { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 26px; }
+.sw { min-width: 0; }
+.sw .chipc { height: clamp(70px, 14vh, 130px); border-radius: 4px; display: flex; align-items: flex-end; padding: 10px; color: #fff; font: 500 13px var(--mono); transform-origin: bottom; }
+.is-active .sw .chipc { animation: grow .9s var(--ease) both; animation-delay: calc(var(--i, 0) * 85ms + 300ms); }
+@keyframes grow { from { transform: scaleY(0); } }
+.sw b { display: block; font: 500 17px/1.2 var(--serif); margin-top: 10px; }
+.sw p { font-size: 13px; color: var(--muted); }
+.p3-bottom { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 16px; margin-top: 18px; }
+.box { border: 1px solid var(--rule); border-radius: 4px; padding: 20px; background: var(--panel); min-width: 0; }
+.specimen { font: 600 64px/1 var(--sans); letter-spacing: -.02em; }
+.states { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.states span { font: 500 12px var(--mono); padding: 4px 9px; border-radius: 999px; border: 1px solid var(--rule); color: var(--muted); transition: all .25s; }
+.states span.cur { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.demo-btn { height: 56px; width: 100%; max-width: 300px; border-radius: 14px; border: 0; background: var(--app-orange); color: #fff; font: 700 16px var(--sans); box-shadow: 0 6px 14px -6px rgb(211 84 0 / .7); transition: all .25s var(--ease); pointer-events: none; }
+.demo-btn.st-hover { background: #b84a00; box-shadow: 0 10px 18px -8px rgb(211 84 0 / .8); transform: translateY(-1px); }
+.demo-btn.st-active { background: #a34200; transform: translateY(1px) scale(.98); box-shadow: none; }
+.demo-btn.st-focus { outline: 3px solid var(--app-blue); outline-offset: 3px; }
+.demo-btn.st-disabled { background: #cbd5e1; color: #475569; box-shadow: none; }
+
+/* ---------- Figures ---------- */
+.fig-btn { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.fig-btn img, .scroller img { display: block; border: 1px solid var(--rule); border-radius: 4px; background: #fff; box-shadow: var(--shadow); }
+.roadmap img { width: 100%; height: auto; max-height: 58vh; object-fit: contain; }
+.scroller { overflow-x: auto; overflow-y: hidden; margin-top: 30px; border-radius: 4px; cursor: grab; scrollbar-width: thin; padding-bottom: 8px; }
+.scroller.dragging { cursor: grabbing; }
+.scroller img { height: clamp(200px, 40vh, 430px); width: auto; max-width: none; user-select: none; -webkit-user-drag: none; }
+
+/* ---------- 14 Compare ---------- */
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.tab { min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--rule); background: var(--panel); font-size: 14px; cursor: pointer; transition: all .2s; }
+.tab .code { background: none; padding: 0 4px 0 0; color: var(--muted); }
+.tab[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.tab[aria-pressed="true"] .code { color: var(--paper); }
+.compare { --pos: 50%; }
+.compare .screen { background: #fff; }
+.compare img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.compare .final { clip-path: inset(0 0 0 var(--pos)); }
+.handle { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; background: var(--blue); z-index: 2; pointer-events: none; }
+.handle::after { content: "⇆"; position: absolute; top: 50%; left: 50%; width: 38px; height: 38px; transform: translate(-50%, -50%); border-radius: 50%; background: var(--blue); color: #fff; display: grid; place-items: center; font-size: 17px; box-shadow: 0 4px 12px rgb(0 0 0 / .25); }
+.cmp-range { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; z-index: 3; margin: 0; }
+.cmp-labels { display: flex; justify-content: space-between; width: min(100%, calc(min(66vh, 640px) * 390 / 844)); margin: 12px auto 0; }
+.cmp-range:focus-visible + .handle::after { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+/* ---------- 15 Team ---------- */
+.team .avatar { width: 76px; height: 76px; border-radius: 50%; display: grid; place-items: center; font: 400 28px/1 var(--serif); border: 1.5px solid var(--ink); margin-bottom: 18px; transition: background-color .3s, color .3s; }
+.team > div:hover .avatar { background: var(--ink); color: var(--paper); }
+.role { font: 600 12px/1.4 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--blue); margin: 4px 0 12px; }
+.team p { font-size: 15px; color: var(--muted); }
+
+/* ---------- Lightbox ---------- */
+.lightbox { position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 32px max(16px, env(safe-area-inset-right, 0px)) 32px max(16px, env(safe-area-inset-left, 0px)); background: var(--veil); cursor: zoom-out; animation: fade .25s both; }
+.lightbox img { max-width: 100%; max-height: 100%; border-radius: 4px; background: #fff; box-shadow: 0 24px 60px rgb(0 0 0 / .5); }
+.lb-close { position: absolute; top: calc(16px + env(safe-area-inset-top, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); }
+@keyframes fade { from { opacity: 0; } }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .slide { align-items: flex-start; overflow-y: auto; padding-block: 64px 96px; }
+  .split, .p3-bottom { grid-template-columns: minmax(0, 1fr); }
+  .cols-3, .meta, .pillars, .laws { grid-template-columns: minmax(0, 1fr); }
+  .cols-3 > * + * { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule); margin-top: 20px; }
+  .laws > div:nth-child(even) { padding-left: 0; border-left: 0; }
+  .brand-grid, .swatches { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .beacon { width: min(64vw, 280px); }
+  .hint, .section-name { display: none; }
+  .phone { height: min(70vh, 560px); }
+}
+@media (max-width: 480px) {
+  .brand-grid { grid-template-columns: minmax(0, 1fr); }
+  .hier { grid-template-columns: 56px minmax(0, 1fr); }
+  .lvl-tag { font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+  .ring { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <header class="topbar">
+    <div class="wordmark"><i></i>Oficios del Barrio · EFI 2026</div>
+    <div class="section-name" id="sectionName">Portada</div>
+  </header>
+
+  <!-- 01 · Cover -->
+  <section class="slide is-active" data-label="Portada" aria-label="Portada">
+    <div class="wrap split">
+      <div>
+        <p class="kicker" data-r>Proyecto de EFI · Interfaz de Usuario 2026</p>
+        <h1 class="display" data-r>Oficios<br><em>del</em> Barrio</h1>
+        <p class="cover-sub" data-r>El vecino que resuelve, a la vuelta de tu casa.</p>
+        <dl class="meta" data-r>
+          <div><dt>Eje</dt><dd>Opción 4 · Economía local y empleo barrial</dd></div>
+          <div><dt>Piloto</dt><dd>Alberdi, Banda Norte y Fénix · Río Cuarto</dd></div>
+          <div><dt>Equipo</dt><dd>Pérez · Neira · Pereyra</dd></div>
+        </dl>
+      </div>
+      <div class="beacon" data-r aria-hidden="true">
+        <span class="ring"></span><span class="ring"></span><span class="ring"></span>
+        <img src="./assets/app-icon.svg" alt="">
+        <span class="dist d1">a 2 cuadras</span>
+        <span class="dist d3">a 4 cuadras</span>
+        <span class="dist d2">a 6 cuadras</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 · Problem -->
+  <section class="slide" data-label="El punto de partida" aria-label="El punto de partida">
+    <div class="wrap split">
+      <div>
+        <p class="kicker" data-r>El punto de partida</p>
+        <h2 data-r>Se rompe algo en casa. ¿A quién llamás?</h2>
+        <p class="lead" data-r>Hoy la respuesta es preguntar en el barrio y esperar a que alguien conteste.</p>
+        <div class="sources" data-r><span>Grupos de Facebook</span><span>Clasificados</span><span>Contactos de WhatsApp</span></div>
+      </div>
+      <ul class="pains">
+        <li data-r><span class="idx">01</span><span class="t">No sabés si está disponible</span><span class="s">Pasás horas escribiendo a quien no puede atender.</span></li>
+        <li data-r><span class="idx">02</span><span class="t">Tenés que dar tu teléfono</span><span class="s">Spam y llamadas fuera de horario, para los dos lados.</span></li>
+        <li data-r><span class="idx">03</span><span class="t">Las referencias andan sueltas</span><span class="s">Nadie sabe si fue puntual, prolijo o cobró justo.</span></li>
+        <li data-r><span class="idx">04</span><span class="t">Hay que escribir todo</span><span class="s">Una barrera real para quien maneja poco la tecnología.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 03 · Idea -->
+  <section class="slide" data-label="1 · La idea" aria-label="La idea">
+    <div class="wrap">
+      <p class="kicker" data-r>1 · La idea</p>
+      <h2 data-r style="max-width:22ch">Una app que conecta a quien sabe un oficio con el vecino que lo necesita, a pocas cuadras.</h2>
+      <p class="body" data-r>Web SPA <em>mobile-first</em>, instalable en el celular, para urgencias y mantenimiento del hogar.</p>
+      <div class="trades" data-r>
+        <span class="trade"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3s-6 6.6-6 11a6 6 0 0 0 12 0c0-4.4-6-11-6-11z"/></svg>Plomero</span>
+        <span class="trade"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c1 4 5 6 5 11a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3-1-6 1-9.5z"/></svg>Gasista</span>
+        <span class="trade"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/></svg>Electricista</span>
+        <span class="trade"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 3h13v5H4zM17 5h3v6h-8v3h-2V9h8V7h-1zM10 15h2v6h-2z"/></svg>Pintor</span>
+        <span class="trade"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5h8v4H3zM13 5h8v4h-8zM3 11h4v4H3zM9 11h8v4H9zM19 11h2v4h-2zM3 17h8v3H3zM13 17h8v3h-8z"/></svg>Albañil</span>
+      </div>
+      <div class="cols-3">
+        <div data-r><span class="idx">Objetivo 1</span><h3>Cercanía</h3><p class="body">Búsqueda filtrada por distancia en cuadras reales dentro del barrio.</p></div>
+        <div data-r><span class="idx">Objetivo 2</span><h3>Facilidad de uso</h3><p class="body">Botones de 56 px, un único botón <span class="or">naranja</span> de acción por pantalla y respuestas rápidas.</p></div>
+        <div data-r><span class="idx">Objetivo 3</span><h3>Reputación barrial</h3><p class="body">Estrellas, etiquetas rápidas y reseñas escritas por vecinos.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · UX evolution: live chat -->
+  <section class="slide" data-label="1 · Evolución UX" aria-label="Evolución UX: el chat interno" data-enter="chat" data-leave="chat">
+    <div class="wrap split">
+      <div>
+        <p class="kicker" data-r>Evolución desde la entrega inicial</p>
+        <h2 data-r>Un chat que el vecino <em>ya sabe usar</em>.</h2>
+        <p class="body" data-r>Replicamos las convenciones de WhatsApp: burbujas, hora y tilde de leído. Nadie pide ni muestra números de teléfono, toda la conversación pasa dentro de la app. Al terminar el trabajo, el vecino califica desde el mismo hilo.</p>
+        <div class="btn-row" data-r><button class="btn" type="button" id="chatReplay">↻ Repetir la conversación</button></div>
+      </div>
+      <div data-r>
+        <div class="phone" aria-label="Recreación animada de la pantalla de chat" role="img">
+          <div class="screen">
+            <div class="app-head"><span class="av">MG</span><div><b>Miguel Gómez</b><small>Plomero · ● Disponible</small></div></div>
+            <div class="chat-body" id="chatBody"></div>
+            <div class="composer"><span class="field">Escribí un mensaje…</span><span class="send"></span></div>
+          </div>
+        </div>
+        <p class="caption" style="text-align:center">Recreación animada de la pantalla <span class="code">06-chat</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · Brand -->
+  <section class="slide" data-label="2 · La marca" aria-label="La marca">
+    <div class="wrap">
+      <p class="kicker" data-r>2 · Empresa, ícono y logos</p>
+      <p class="quote" data-r><span class="mark">“</span>El vecino que resuelve, a la vuelta de tu casa.<span class="mark">”</span></p>
+      <div class="brand-grid">
+        <div class="brand-card" data-r><span class="label">Ícono para apps y tiendas</span><img class="icon-img" src="./assets/app-icon.svg" alt="Ícono: una casa con un punto naranja de cercanía"><span class="caption" style="margin:0">Hogar + punto naranja de cercanía</span></div>
+        <div class="brand-card lightbg" data-r><span class="label">Logo · versión clara</span><img src="./assets/logo-horizontal-claro.svg" alt="Logo horizontal, versión clara"></div>
+        <div class="brand-card night" data-r><span class="label">Logo · versión oscura</span><img src="./assets/logo-horizontal-oscuro.svg" alt="Logo horizontal, versión oscura"></div>
+      </div>
+      <p class="caption" data-r>Comunidad piloto: Barrio Alberdi, Banda Norte y Barrio Fénix, Río Cuarto.</p>
+    </div>
+  </section>
+
+  <!-- 06 · Value -->
+  <section class="slide" data-label="3 · Valor agregado" aria-label="Valor agregado">
+    <div class="wrap split">
+      <div>
+        <p class="kicker" data-r>3 · Valor agregado</p>
+        <h2 data-r>Lo que un grupo de Facebook no te da.</h2>
+        <ul class="vlist">
+          <li data-r><span class="idx">01</span><div><h3>Disponibilidad en tiempo real</h3><p>Un interruptor en el panel del prestador: Disponible o No disponible.</p></div></li>
+          <li data-r><span class="idx">02</span><div><h3>Comunicación 100 % interna</h3><p>Sin pedir teléfono a nadie. Todo pasa por el chat de la app.</p></div></li>
+          <li data-r><span class="idx">03</span><div><h3>Reputación ligada al servicio</h3><p>Opiniones de vecinos reales sobre puntualidad, prolijidad y presupuesto, más el badge Matriculado.</p></div></li>
+          <li data-r><span class="idx">04</span><div><h3>Cero fricción para escribir</h3><p>Respuestas prearmadas para consultar, responder y calificar.</p></div></li>
+        </ul>
+      </div>
+      <div data-r>
+        <div class="pcard">
+          <div class="pcard-top">
+            <span class="av">MG</span>
+            <div><h4>Miguel Gómez</h4><div class="sub">Plomero</div><span class="badge">✓ Matriculado</span></div>
+          </div>
+          <div class="pcard-stats"><span><b>★ 4.8</b> puntaje</span><span><b>23</b> trabajos</span><span><b>6</b> cuadras</span></div>
+          <div class="avail">
+            <span class="avail-txt" id="availTxt">● Disponible</span>
+            <button class="switch" type="button" role="switch" aria-checked="true" aria-labelledby="availTxt" id="availSwitch"></button>
+          </div>
+          <button class="cta" type="button" id="availCta">Contactar por chat</button>
+        </div>
+        <p class="try">Probalo: tocá el interruptor. El estado se lee con punto, texto y botón, no solo con color.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 · Community -->
+  <section class="slide" data-label="4 · Comunidad" aria-label="Cómo ayuda a la comunidad">
+    <div class="wrap">
+      <p class="kicker" data-r>4 · ¿Cómo ayuda a nuestra comunidad?</p>
+      <h2 data-r>Lo que gana el barrio.</h2>
+      <div class="cols-3">
+        <div data-r><div class="num"><span class="count" data-to="0">0</span> <span class="or">%</span></div><h3>Economía local circular</h3><p class="body">Se contrata a trabajadores a pocas cuadras, sin intermediarios ni comisiones.</p></div>
+        <div data-r><div class="num"><span class="count" data-to="3">3</span> pasos</div><h3>Inclusión digital</h3><p class="body">Presencia digital inmediata para quien no maneja marketing ni redes, con un alta guiada.</p></div>
+        <div data-r><div class="num"><em>Vecinos</em></div><h3>Seguridad comunitaria</h3><p class="body">Tranquilidad para adultos mayores y familias, con referencias directas de su propio barrio.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 · Divider -->
+  <section class="slide" data-label="5 · Desarrollos del cursado" aria-label="Desarrollos del cursado">
+    <div class="wrap">
+      <p class="kicker" data-r>5 · Desarrollos del cursado</p>
+      <h2 data-r style="max-width:20ch">Tres pilares de la materia, aplicados pantalla por pantalla.</h2>
+      <ol class="pillars">
+        <li data-r><span class="big">1</span><span class="label">Pilar UX 1</span><h3 style="margin-top:8px">Modelos mentales y affordance</h3></li>
+        <li data-r><span class="big">2</span><span class="label">Pilar UX 2</span><h3 style="margin-top:8px">Gestalt y jerarquía visual</h3></li>
+        <li data-r><span class="big">3</span><span class="label">Pilar UX 3</span><h3 style="margin-top:8px">Estética funcional</h3></li>
+      </ol>
+      <p class="also" data-r>Y en la arquitectura: sitemap · recorrido del usuario · wireframes hasta la UI final.</p>
+    </div>
+  </section>
+
+  <!-- 09 · Pillar 1 -->
+  <section class="slide" data-label="Pilar UX 1" aria-label="Pilar UX 1: modelos mentales y affordance">
+    <div class="wrap split">
+      <div>
+        <p class="kicker" data-r>Pilar UX 1</p>
+        <h2 data-r>Modelos mentales y <em>affordance</em></h2>
+        <p class="pull" data-r>Cero curva de aprendizaje: la interfaz nunca obliga a adivinar cómo funciona un control.</p>
+        <ul class="facts">
+          <li data-r><b>Mensajería conocida.</b> Burbujas azules a la derecha, blancas a la izquierda, “10:12 · Leído”. <span class="code">06-chat</span></li>
+          <li data-r><b>Un modelo por rol.</b> El vecino elige gota, llama o rayo y ve a cuántas cuadras está cada uno. El prestador ve primero su interruptor y sus 5 consultas sin leer. <span class="code">08-prestador-panel</span></li>
+          <li data-r><b>Relieve y estados.</b> Botones de 56 px con sombra; los chips pasan de borde gris a relleno azul al elegirlos.</li>
+          <li data-r><b>Mapeo natural.</b> Derecha es disponible. Las estrellas se iluminan y se traducen a palabras. <span class="code">07-calificacion</span></li>
+        </ul>
+      </div>
+      <div data-r>
+        <div class="rate">
+          <h4>¿Cómo trabajó Miguel?</h4>
+          <div class="sub">Calificá desde el mismo chat</div>
+          <div class="stars" id="stars" role="radiogroup" aria-label="Puntaje"></div>
+          <div class="rword" id="rword" aria-live="polite">Tocá una estrella</div>
+          <div class="chips" id="rchips">
+            <button class="chip" type="button" aria-pressed="false">Puntual</button>
+            <button class="chip" type="button" aria-pressed="false">Precio justo</button>
+            <button class="chip" type="button" aria-pressed="false">Prolijo</button>
+            <button class="chip" type="button" aria-pressed="false">Explicó todo</button>
+          </div>
+          <button class="cta" type="button" id="rateSend" disabled>Enviar calificación</button>
+        </div>
+        <p class="try">Interactivo: probá las estrellas y las etiquetas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 · Pillar 2 -->
+  <section class="slide" data-label="Pilar UX 2" aria-label="Pilar UX 2: Gestalt y jerarquía visual">
+    <div class="wrap split">
+      <div>
+        <p class="kicker" data-r>Pilar UX 2</p>
+        <h2 data-r>El orden del caos</h2>
+        <p class="body" data-r>Ante una urgencia, el vecino tiene menos de 10 segundos para ver quién está cerca, quién atiende y qué tocar.</p>
+        <div class="laws">
+          <div data-r><b>Región común</b><p>Tarjetas blancas con borde suave sobre fondo neutro agrupan cada prestador.</p></div>
+          <div data-r><b>Proximidad</b><p>4–8 px entre datos relacionados, 20–24 px entre bloques distintos.</p></div>
+          <div data-r><b>Similitud</b><p>Filtros, respuestas y etiquetas comparten la misma píldora.</p></div>
+          <div data-r><b>Figura-fondo</b><p>El modal de confirmación aísla la decisión sobre un fondo oscurecido al 55 %.</p></div>
+        </div>
+      </div>
+      <div data-r>
+        <div class="hier" aria-label="Jerarquía del perfil del prestador en cuatro niveles">
+          <div class="lvl-tag"><b>1°</b>Identidad</div>
+          <div class="prof l1"><span class="av">MG</span><div><b>Miguel Gómez</b><span class="badge">✓ Matriculado</span></div></div>
+          <div class="lvl-tag"><b>2°</b>Resumen</div>
+          <div class="prof"><div class="statbox">
+            <div><b class="count" data-to="4.8" data-dec="1">4.8</b><span>puntaje</span></div>
+            <div><b class="count" data-to="23">23</b><span>trabajos</span></div>
+            <div><b class="count" data-to="6">6</b><span>cuadras</span></div>
+          </div></div>
+          <div class="lvl-tag"><b>3°</b>Prueba social</div>
+          <div class="prof bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <div class="lvl-tag"><b>4°</b>Conversión</div>
+          <div class="prof l4"><button class="cta" type="button" tabindex="-1">Contactar</button></div>
+        </div>
+        <p class="caption" style="text-align:center">Pantalla <span class="code">05-perfil-prestador</span>, ordenada por peso de decisión</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 · Pillar 3 -->
+  <section class="slide" data-label="Pilar UX 3" aria-label="Pilar UX 3: estética funcional" data-enter="states" data-leave="states">
+    <div class="wrap">
+      <p class="kicker" data-r>Pilar UX 3</p>
+      <h2 data-r style="max-width:none">Estética funcional</h2>
+      <p class="body" data-r>Cada color y cada tamaño cumple una función de legibilidad, accesibilidad WCAG AA o conversión. Vive en Figma y en <span class="code">tokens.css</span>.</p>
+      <div class="swatches">
+        <div class="sw" data-r><div class="chipc" style="background:#1a56a8">#1a56a8</div><b>Azul Confianza</b><p>Estructura y navegación. 6.9:1 con texto blanco.</p></div>
+        <div class="sw" data-r><div class="chipc" style="background:#d35400">#d35400</div><b>Naranja Oficio</b><p>Solo para la acción de conversión. Uno por pantalla.</p></div>
+        <div class="sw" data-r><div class="chipc" style="background:#146b39">#146b39</div><b>Verde</b><p>Disponible.</p></div>
+        <div class="sw" data-r><div class="chipc" style="background:#dc2626">#dc2626</div><b>Rojo</b><p>No disponible.</p></div>
+      </div>
+      <div class="p3-bottom">
+        <div class="box" data-r><span class="label">Tipografía · Inter</span><div class="specimen">Aa</div><p class="body" style="font-size:15px;margin-top:8px">Nada de contenido por debajo de 15–16 px. 12–13 px solo para hora y contadores.</p></div>
+        <div class="box" data-r>
+          <span class="label">Los 5 estados de cada componente</span>
+          <div style="margin-top:14px"><button class="demo-btn" id="stateBtn" type="button" tabindex="-1" aria-hidden="true">Contactar</button></div>
+          <div class="states" id="stateList"><span data-s="default">Default</span><span data-s="hover">Hover</span><span data-s="active">Active</span><span data-s="focus">Focus</span><span data-s="disabled">Disabled</span></div>
+          <div class="btn-row" style="margin-top:16px"><button class="btn" type="button" data-zoom="./assets/01-fundamentos.svg" data-alt="Sistema de diseño: color, tipografía y componentes">Ver el sistema completo</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 · Sitemap -->
+  <section class="slide" data-label="5.1 · Sitemap" aria-label="Arquitectura de información y sitemap" data-enter="pan" data-leave="pan">
+    <div class="wrap">
+      <p class="kicker" data-r>5.1 · Arquitectura de información</p>
+      <h2 data-r style="max-width:22ch">Caminos cortos, de la bienvenida al chat.</h2>
+      <p class="body" data-r>La calificación vive dentro de la conversación, así el vecino no tiene que buscar dónde puntuar.</p>
+      <div class="scroller no-swipe" id="scroller" data-r>
+        <img src="./assets/sitemap-oficios-del-barrio.png" alt="Sitemap de Oficios del Barrio" draggable="false" data-zoom-self>
+      </div>
+      <p class="caption" data-r>Arrastrá para recorrerlo · tocá para ampliar</p>
+    </div>
+  </section>
+
+  <!-- 13 · Journey -->
+  <section class="slide" data-label="5.2 · Recorrido" aria-label="Recorrido del usuario">
+    <div class="wrap">
+      <p class="kicker" data-r>5.2 · Recorrido del usuario</p>
+      <h2 data-r style="max-width:none">Dos carriles: vecino y prestador.</h2>
+      <div class="roadmap" data-r>
+        <button class="fig-btn" type="button" data-zoom="./assets/00-roadmap.svg" data-alt="Recorrido del usuario por carriles"><img src="./assets/00-roadmap.svg" alt="Recorrido del usuario por carriles: vecino y prestador"></button>
+      </div>
+      <p class="caption" data-r>Flujo temporal y momentos clave de interacción · tocá para ampliar</p>
+    </div>
+  </section>
+
+  <!-- 14 · Wireframe to final -->
+  <section class="slide" data-label="5.3 · Wireframes" aria-label="De wireframe a diseño final" data-enter="sweep">
+    <div class="wrap split">
+      <div>
+        <p class="kicker" data-r>5.3 · Evolución de wireframes</p>
+        <h2 data-r>De la baja fidelidad a la SPA.</h2>
+        <p class="body" data-r>Elegí una pantalla y arrastrá el divisor para comparar el wireframe con el diseño final.</p>
+        <div class="tabs" id="tabs" data-r></div>
+        <div class="btn-row" data-r>
+          <a class="btn" href="https://www.figma.com/design/CiIq2M3qOFzPITvehE0IA8/PROTOTIPADO?node-id=0-1&amp;p=f&amp;t=Q0UMiLogzwEyrKuR-0" target="_blank" rel="noopener noreferrer">Wireframes en Figma ↗</a>
+          <a class="btn" href="https://www.figma.com/design/rxu9gFRhdJSMgq8FVVRjin/EFI?timeline=keyframe&amp;node-id=1-2&amp;t=RSMbL2Khclh0bPwA-0" target="_blank" rel="noopener noreferrer">Diseño final en Figma ↗</a>
+        </div>
+      </div>
+      <div data-r>
+        <div class="phone compare no-swipe" id="compare">
+          <div class="screen">
+            <img class="wire" id="cmpWire" src="./assets/wireframes/02-bienvenida-wireframe.svg" alt="Wireframe">
+            <img class="final" id="cmpFinal" src="./assets/02-bienvenida.png" alt="Diseño final">
+            <input class="cmp-range" id="cmpRange" type="range" min="0" max="100" value="50" aria-label="Comparar wireframe y diseño final">
+            <div class="handle"></div>
+          </div>
+        </div>
+        <div class="cmp-labels"><span class="label">← Wireframe</span><span class="label">Diseño final →</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 · Team -->
+  <section class="slide" data-label="6 · Equipo" aria-label="Equipo del proyecto">
+    <div class="wrap">
+      <p class="kicker" data-r>6 · Equipo del proyecto</p>
+      <h2 data-r>Quiénes lo hicimos.</h2>
+      <div class="cols-3 team">
+        <div data-r><div class="avatar">LP</div><h3>Lucas Pérez</h3><div class="role">UX/UI Lead &amp; Frontend Architect</div><p>Arquitectura de la SPA, tokens CSS y componentes UI, accesibilidad WCAG AA y navegación por teclado.</p></div>
+        <div data-r><div class="avatar">LN</div><h3>Leonardo Neira</h3><div class="role">UX Researcher &amp; Information Architect</div><p>Modelos mentales y affordance, recorridos de usuario y arquitectura del sitemap.</p></div>
+        <div data-r><div class="avatar">TP</div><h3>Thomas Pereyra</h3><div class="role">UI Designer &amp; Prototyping Specialist</div><p>Gestalt y jerarquía visual, desde los wireframes hasta el prototipo de alta fidelidad en Figma.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16 · Close -->
+  <section class="slide" data-label="Cierre" aria-label="Cierre">
+    <div class="wrap split">
+      <div>
+        <p class="kicker" data-r>Oficios del Barrio</p>
+        <h1 class="display" data-r style="font-size:clamp(54px,8vw,124px)">Gracias.</h1>
+        <p class="cover-sub" data-r>¿Preguntas?</p>
+        <div class="btn-row" data-r>
+          <a class="btn" href="https://www.figma.com/design/rxu9gFRhdJSMgq8FVVRjin/EFI?timeline=keyframe&amp;node-id=1-2&amp;t=RSMbL2Khclh0bPwA-0" target="_blank" rel="noopener noreferrer">Ver el diseño en Figma ↗</a>
+          <button class="btn" type="button" id="restart">↺ Volver al inicio</button>
+        </div>
+      </div>
+      <div class="beacon" data-r aria-hidden="true">
+        <span class="ring"></span><span class="ring"></span><span class="ring"></span>
+        <img src="./assets/app-icon.svg" alt="">
+        <span class="dist d1">El vecino que resuelve</span>
+        <span class="dist d2">a la vuelta de tu casa</span>
+      </div>
+    </div>
+  </section>
+
+  <nav class="hud" aria-label="Navegación de la presentación">
+    <span class="counter" id="counter"><b>01</b> / 16</span>
+    <span class="hint"><kbd>←</kbd> <kbd>→</kbd> navegar · <kbd>F</kbd> pantalla completa · <kbd>D</kbd> tema</span>
+    <span class="spacer"></span>
+    <button class="iconbtn" type="button" id="themeBtn" aria-label="Cambiar tema claro u oscuro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" fill="currentColor"/></svg></button>
+    <button class="iconbtn" type="button" id="prevBtn" aria-label="Diapositiva anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button class="iconbtn" type="button" id="nextBtn" aria-label="Diapositiva siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></button>
+  </nav>
+  <div class="progress" aria-hidden="true"><i id="progress"></i></div>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada" hidden>
+  <img id="lbImg" src="data:," alt="">
+  <button class="iconbtn lb-close" type="button" id="lbClose" aria-label="Cerrar imagen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+</div>
+
+<script>
+(() => {
+  document.documentElement.lang = 'es';
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const slides = [...document.querySelectorAll('.slide')];
+  const total = slides.length;
+  const pad = n => String(n).padStart(2, '0');
+  const $ = id => document.getElementById(id);
+  let cur = -1;
+
+  slides.forEach(s => s.querySelectorAll('[data-r]').forEach((el, i) => el.style.setProperty('--i', i)));
+
+  /* ---------- Per-slide behaviours ---------- */
+  const hooks = { enter: {}, leave: {} };
+
+  // Animated chat (data mirrors the app's seeded conversation in store.js)
+  const chatBody = $('chatBody');
+  let chatTimers = [];
+  const later = (fn, ms) => chatTimers.push(setTimeout(fn, ms));
+  function add(html, cls, tag = 'div') { const el = document.createElement(tag); el.className = cls; el.innerHTML = html; chatBody.appendChild(el); return el; }
+  function typing() { return add('<i></i><i></i><i></i>', 'typing'); }
+  function runChat() {
+    chatTimers.forEach(clearTimeout); chatTimers = []; chatBody.innerHTML = '';
+    const steps = [
+      [300,  () => add('Hola Miguel, necesito solicitar un presupuesto para una pérdida en la cocina.<small>10:12 · Leído ✓✓</small>', 'bub out')],
+      [900,  () => { const t = typing(); later(() => { t.remove(); add('Buenas! ¿Es en la canilla o debajo de la bacha?<small>10:14</small>', 'bub in'); }, 1100); }],
+      [2600, () => add('<span>Debajo de la bacha.</span>', 'quick')],
+      [3300, () => { chatBody.lastChild.remove(); add('Debajo de la bacha.<small>10:15 · Leído ✓✓</small>', 'bub out'); }],
+      [3900, () => { const t = typing(); later(() => { t.remove(); add('Perfecto. Puedo pasar hoy entre 16 y 18 hs. El presupuesto es sin cargo.<small>10:16</small>', 'bub in'); }, 1300); }],
+      [6000, () => add('Trabajo finalizado', 'sys')],
+      [6500, () => {
+        const c = add('<b>¿Cómo trabajó Miguel?</b><div class="stars-row"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><div class="rate-word"></div><div class="mini-chips"><span>Puntual</span><span>Precio justo</span><span>Prolijo</span></div>', 'rate-card');
+        const st = c.querySelectorAll('.stars-row span'), w = c.querySelector('.rate-word'), ch = c.querySelectorAll('.mini-chips span');
+        const words = ['Muy malo', 'Malo', 'Regular', 'Muy bueno', 'Excelente'];
+        st.forEach((s, i) => later(() => { s.classList.add('on'); w.textContent = words[i]; }, 400 + i * 220));
+        [0, 1].forEach((k, j) => later(() => ch[k].classList.add('sel'), 1700 + j * 350));
+      }]
+    ];
+    if (reduced) { steps.forEach(([, fn]) => fn()); return; }
+    steps.forEach(([ms, fn]) => later(fn, ms));
+  }
+  hooks.enter.chat = runChat;
+  hooks.leave.chat = () => { chatTimers.forEach(clearTimeout); chatTimers = []; };
+  $('chatReplay').addEventListener('click', runChat);
+
+  // Availability switch
+  const sw = $('availSwitch'), swTxt = $('availTxt'), swCta = $('availCta');
+  sw.addEventListener('click', () => {
+    const on = sw.getAttribute('aria-checked') !== 'true';
+    sw.setAttribute('aria-checked', on);
+    swTxt.textContent = on ? '● Disponible' : '● No disponible';
+    swTxt.classList.toggle('off', !on);
+    swCta.disabled = !on;
+    swCta.textContent = on ? 'Contactar por chat' : 'No atiende en este momento';
+  });
+
+  // Star rating (labels match calificacion.js)
+  const words = ['Muy malo', 'Malo', 'Regular', 'Muy bueno', 'Excelente'];
+  const starsEl = $('stars'), rword = $('rword'), rateSend = $('rateSend');
+  const starSvg = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg>';
+  let score = 0;
+  const paint = n => [...starsEl.children].forEach((b, i) => b.classList.toggle('on', i < n));
+  words.forEach((w, i) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'star'; b.innerHTML = starSvg;
+    b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', 'false'); b.setAttribute('aria-label', `${i + 1} de 5: ${w}`);
+    b.addEventListener('mouseenter', () => { paint(i + 1); rword.textContent = w; });
+    b.addEventListener('mouseleave', () => { paint(score); rword.textContent = score ? words[score - 1] : 'Tocá una estrella'; });
+    b.addEventListener('click', () => {
+      score = i + 1; paint(score); rword.textContent = w; rateSend.disabled = false; rateSend.textContent = 'Enviar calificación';
+      [...starsEl.children].forEach((x, k) => x.setAttribute('aria-checked', k === i));
+    });
+    starsEl.appendChild(b);
+  });
+  $('rchips').addEventListener('click', e => {
+    const c = e.target.closest('.chip'); if (!c) return;
+    c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') !== 'true');
+  });
+  rateSend.addEventListener('click', () => { rateSend.textContent = '¡Gracias por calificar!'; rateSend.disabled = true; });
+
+  // Count-up numbers
+  function countUp(root) {
+    root.querySelectorAll('.count').forEach(el => {
+      const to = parseFloat(el.dataset.to), dec = +el.dataset.dec || 0;
+      if (reduced || to === 0) { el.textContent = to.toFixed(dec); return; }
+      const t0 = performance.now(), dur = 1300;
+      const tick = t => {
+        const p = Math.min(1, (t - t0 - 400) / dur);
+        const e = p <= 0 ? 0 : 1 - Math.pow(1 - p, 3);
+        el.textContent = (to * e).toFixed(dec);
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      el.textContent = (0).toFixed(dec);
+      requestAnimationFrame(tick);
+    });
+  }
+
+  // Component states cycler
+  const stateBtn = $('stateBtn'), stateList = [...$('stateList').children];
+  let stateTimer = null;
+  function setState(i) {
+    const s = stateList[i].dataset.s;
+    stateBtn.className = 'demo-btn' + (s === 'default' ? '' : ' st-' + s);
+    stateList.forEach((el, k) => el.classList.toggle('cur', k === i));
+  }
+  hooks.enter.states = () => {
+    let i = 0; setState(0); clearInterval(stateTimer);
+    if (!reduced) stateTimer = setInterval(() => { i = (i + 1) % stateList.length; setState(i); }, 1400);
+  };
+  hooks.leave.states = () => clearInterval(stateTimer);
+
+  // Sitemap scroller: drag to pan, gentle auto-pan, tap to zoom
+  const scroller = $('scroller');
+  let panRaf = 0, dragging = false, moved = false, sx = 0, sl = 0;
+  const stopPan = () => cancelAnimationFrame(panRaf);
+  hooks.enter.pan = () => {
+    scroller.scrollLeft = 0; stopPan();
+    if (reduced) return;
+    const t0 = performance.now() + 900, dur = 16000;
+    const step = t => {
+      const max = scroller.scrollWidth - scroller.clientWidth;
+      const p = Math.max(0, Math.min(1, (t - t0) / dur));
+      scroller.scrollLeft = max * (0.5 - Math.cos(p * Math.PI) / 2);
+      if (p < 1) panRaf = requestAnimationFrame(step);
+    };
+    panRaf = requestAnimationFrame(step);
+  };
+  hooks.leave.pan = stopPan;
+  scroller.addEventListener('pointerdown', e => { stopPan(); dragging = true; moved = false; sx = e.clientX; sl = scroller.scrollLeft; scroller.classList.add('dragging'); });
+  addEventListener('pointermove', e => { if (!dragging) return; const dx = e.clientX - sx; if (Math.abs(dx) > 5) moved = true; scroller.scrollLeft = sl - dx; });
+  addEventListener('pointerup', () => { dragging = false; scroller.classList.remove('dragging'); });
+  scroller.addEventListener('wheel', stopPan, { passive: true });
+  scroller.addEventListener('click', e => { if (!moved && e.target.tagName === 'IMG') openLb(e.target.src, e.target.alt); });
+
+  // Wireframe vs final compare
+  const screens = [
+    ['02', 'Bienvenida', '02-bienvenida'], ['03', 'Home', '03-home-cliente'], ['04', 'Resultados', '04-resultados'],
+    ['05', 'Perfil', '05-perfil-prestador'], ['06', 'Chat', '06-chat'], ['07', 'Calificación', '07-calificacion'],
+    ['08', 'Panel', '08-prestador-panel'], ['09', 'Registro', '09-registro-prestador']
+  ];
+  const tabs = $('tabs'), compare = $('compare'), range = $('cmpRange'), wire = $('cmpWire'), fin = $('cmpFinal');
+  let sweepRaf = 0;
+  const setPos = v => { compare.style.setProperty('--pos', v + '%'); range.value = v; };
+  function sweep() {
+    cancelAnimationFrame(sweepRaf);
+    if (reduced) { setPos(50); return; }
+    const t0 = performance.now() + 500, dur = 1400;
+    const step = t => {
+      const p = Math.max(0, Math.min(1, (t - t0) / dur));
+      const e = 1 - Math.pow(1 - p, 3);
+      setPos(Math.round(100 - 50 * e));
+      if (p < 1) sweepRaf = requestAnimationFrame(step);
+    };
+    setPos(100); sweepRaf = requestAnimationFrame(step);
+  }
+  screens.forEach(([code, name, file], i) => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'tab'; b.setAttribute('aria-pressed', i === 0);
+    b.innerHTML = `<span class="code">${code}</span>${name}`;
+    b.addEventListener('click', () => {
+      [...tabs.children].forEach(x => x.setAttribute('aria-pressed', x === b));
+      wire.src = `./assets/wireframes/${file}-wireframe.svg`; wire.alt = `Wireframe de ${name}`;
+      fin.src = `./assets/${file}.png`; fin.alt = `Diseño final de ${name}`;
+      sweep();
+    });
+    tabs.appendChild(b);
+  });
+  range.addEventListener('input', () => { cancelAnimationFrame(sweepRaf); compare.style.setProperty('--pos', range.value + '%'); });
+  hooks.enter.sweep = sweep;
+
+  /* ---------- Lightbox ---------- */
+  const lb = $('lightbox'), lbImg = $('lbImg');
+  let lastFocus = null;
+  function openLb(src, alt) { lastFocus = document.activeElement; lbImg.src = src; lbImg.alt = alt || ''; lb.hidden = false; $('lbClose').focus(); }
+  function closeLb() { lb.hidden = true; if (lastFocus) lastFocus.focus(); }
+  lb.addEventListener('click', closeLb);
+  document.querySelectorAll('[data-zoom]').forEach(b => b.addEventListener('click', () => openLb(b.dataset.zoom, b.dataset.alt)));
+
+  /* ---------- Navigation ---------- */
+  function go(n) {
+    n = Math.max(0, Math.min(total - 1, n));
+    if (n === cur) return;
+    const prev = slides[cur];
+    if (prev && prev.dataset.leave) hooks.leave[prev.dataset.leave]?.();
+    slides.forEach((s, i) => {
+      s.classList.toggle('is-active', i === n);
+      s.classList.toggle('is-past', i < n);
+      s.inert = i !== n;
+      s.setAttribute('aria-hidden', i !== n);
+    });
+    cur = n;
+    const s = slides[n];
+    s.scrollTop = 0;
+    $('counter').innerHTML = `<b>${pad(n + 1)}</b> / ${pad(total)}`;
+    $('progress').style.setProperty('--p', (n + 1) / total);
+    $('sectionName').textContent = s.dataset.label || '';
+    $('prevBtn').disabled = n === 0; $('nextBtn').disabled = n === total - 1;
+    countUp(s);
+    if (s.dataset.enter) hooks.enter[s.dataset.enter]?.();
+    const h = '#slide-' + (n + 1);
+    if (location.hash !== h) { try { history.replaceState(null, '', h); } catch (e) { location.hash = h; } }
+  }
+  const next = () => go(cur + 1), prev = () => go(cur - 1);
+  $('nextBtn').addEventListener('click', next);
+  $('prevBtn').addEventListener('click', prev);
+  $('restart').addEventListener('click', () => go(0));
+
+  function toggleTheme() {
+    const root = document.documentElement;
+    const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+    try { localStorage.setItem('ofb-deck-theme', root.dataset.theme); } catch (e) {}
+  }
+  try { const t = localStorage.getItem('ofb-deck-theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  $('themeBtn').addEventListener('click', toggleTheme);
+
+  addEventListener('keydown', e => {
+    if (!lb.hidden) { if (e.key === 'Escape') closeLb(); return; }
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const tag = e.target.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA') return;
+    const onButton = tag === 'BUTTON' || tag === 'A';
+    switch (e.key) {
+      case 'ArrowRight': case 'ArrowDown': case 'PageDown': e.preventDefault(); next(); break;
+      case 'ArrowLeft': case 'ArrowUp': case 'PageUp': e.preventDefault(); prev(); break;
+      case ' ': if (!onButton) { e.preventDefault(); e.shiftKey ? prev() : next(); } break;
+      case 'Home': e.preventDefault(); go(0); break;
+      case 'End': e.preventDefault(); go(total - 1); break;
+      case 'f': case 'F':
+        try { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen().catch(() => {}); } catch (err) {}
+        break;
+      case 'd': case 'D': toggleTheme(); break;
+    }
+  });
+
+  // Swipe between slides (ignored on the sitemap scroller and the compare slider)
+  let tx = null, ty = 0;
+  $('deck').addEventListener('pointerdown', e => { if (e.pointerType === 'mouse' || e.target.closest('.no-swipe')) { tx = null; return; } tx = e.clientX; ty = e.clientY; });
+  $('deck').addEventListener('pointerup', e => {
+    if (tx === null) return;
+    const dx = e.clientX - tx, dy = e.clientY - ty; tx = null;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.4) dx < 0 ? next() : prev();
+  });
+
+  const fromHash = () => { const m = location.hash.match(/^#slide-(\d+)$/); return m ? +m[1] - 1 : 0; };
+  addEventListener('hashchange', () => go(fromHash()));
+  go(fromHash());
+})();
+</script>
+</body>
+</html>

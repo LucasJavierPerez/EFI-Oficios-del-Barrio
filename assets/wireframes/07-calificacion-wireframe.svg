@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844" font-family="Inter, Helvetica, Arial, sans-serif">
+  <style>
+    .bg{fill:#FFFFFF}
+    .chip{fill:#FFFFFF;stroke:#D6D9DE;stroke-width:1.5}
+    .chipActive{fill:#EDEEF0;stroke:#3A3F47;stroke-width:1.5}
+    .line{fill:#C7CBD1}
+    .lineLight{fill:#DADDE1}
+    .txt{fill:#3A3F47;font-weight:700}
+    .txtMuted{fill:#6B7078}
+    .icon{stroke:#6B7078;stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .avatar{fill:#DADDE1;stroke:#9AA0A9;stroke-width:1.5}
+  </style>
+
+  <rect width="390" height="844" class="bg"/>
+
+  <!-- Header -->
+  <g class="icon" transform="translate(34,80)"><line x1="-8" y1="-8" x2="8" y2="8"/><line x1="8" y1="-8" x2="-8" y2="8"/></g>
+  <text x="195" y="88" font-size="16" font-weight="700" text-anchor="middle" class="txt">Calificar el trabajo</text>
+
+  <!-- Prestador -->
+  <circle cx="195" cy="176" r="44" class="avatar"/>
+  <rect x="145" y="238" width="100" height="12" rx="6" class="line"/>
+  <rect x="120" y="266" width="150" height="10" rx="5" class="lineLight"/>
+
+  <!-- Estrellas -->
+  <text x="195" y="332" font-size="18" font-weight="700" text-anchor="middle" class="txt">¿Cómo estuvo el trabajo?</text>
+
+  <g class="icon" stroke-width="2">
+    <path transform="translate(75,388)" d="M0 -24 L6.9 -8.5 L22.8 -7.4 L10.6 2.9 L14.5 18.5 L0 10 L-14.5 18.5 L-10.6 2.9 L-22.8 -7.4 L-6.9 -8.5 Z"/>
+    <path transform="translate(135,388)" d="M0 -24 L6.9 -8.5 L22.8 -7.4 L10.6 2.9 L14.5 18.5 L0 10 L-14.5 18.5 L-10.6 2.9 L-22.8 -7.4 L-6.9 -8.5 Z" fill="#3A3F47" stroke="#3A3F47"/>
+    <path transform="translate(195,388)" d="M0 -24 L6.9 -8.5 L22.8 -7.4 L10.6 2.9 L14.5 18.5 L0 10 L-14.5 18.5 L-10.6 2.9 L-22.8 -7.4 L-6.9 -8.5 Z" fill="#3A3F47" stroke="#3A3F47"/>
+    <path transform="translate(255,388)" d="M0 -24 L6.9 -8.5 L22.8 -7.4 L10.6 2.9 L14.5 18.5 L0 10 L-14.5 18.5 L-10.6 2.9 L-22.8 -7.4 L-6.9 -8.5 Z" fill="#3A3F47" stroke="#3A3F47"/>
+    <path transform="translate(315,388)" d="M0 -24 L6.9 -8.5 L22.8 -7.4 L10.6 2.9 L14.5 18.5 L0 10 L-14.5 18.5 L-10.6 2.9 L-22.8 -7.4 L-6.9 -8.5 Z"/>
+  </g>
+  <text x="195" y="440" font-size="16" font-weight="700" text-anchor="middle" class="txt">Muy bueno</text>
+
+  <!-- Etiquetas rápidas -->
+  <text x="24" y="486" font-size="15" class="txt">¿Qué destacarías? (opcional)</text>
+
+  <rect x="24" y="502" width="104" height="44" rx="22" class="chipActive"/>
+  <text x="76" y="530" font-size="13" font-weight="600" text-anchor="middle" class="txt">Puntual</text>
+  <rect x="138" y="502" width="118" height="44" rx="22" class="chip"/>
+  <text x="197" y="530" font-size="13" font-weight="600" text-anchor="middle" class="txtMuted">Precio justo</text>
+  <rect x="266" y="502" width="100" height="44" rx="22" class="chipActive"/>
+  <text x="316" y="530" font-size="13" font-weight="600" text-anchor="middle" class="txt">Prolijo</text>
+
+  <rect x="24" y="556" width="130" height="44" rx="22" class="chip"/>
+  <text x="89" y="584" font-size="13" font-weight="600" text-anchor="middle" class="txtMuted">Explicó todo</text>
+  <rect x="164" y="556" width="150" height="44" rx="22" class="chip"/>
+  <text x="239" y="584" font-size="13" font-weight="600" text-anchor="middle" class="txtMuted">Volvería a llamarlo</text>
+
+  <!-- Comentario -->
+  <text x="24" y="642" font-size="15" class="txt">Contale al barrio cómo te fue</text>
+  <rect x="24" y="656" width="342" height="104" rx="18" fill="#FAFAFA" stroke="#D6D9DE" stroke-width="1.5"/>
+  <rect x="44" y="678" width="220" height="9" rx="4.5" class="lineLight"/>
+  <text x="350" y="750" font-size="12" text-anchor="end" class="txtMuted">0 / 200</text>
+
+  <!-- CTA -->
+  <rect x="24" y="776" width="342" height="56" rx="16" fill="#3A3F47"/>
+  <text x="195" y="811" font-size="17" font-weight="700" fill="#FFFFFF" text-anchor="middle">Enviar calificación</text>
+</svg>
