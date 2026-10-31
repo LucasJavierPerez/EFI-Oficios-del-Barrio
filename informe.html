@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documento de Investigación UX/UI — Oficios del Barrio (EFI 2026)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1a56a8;
+      --primary-light: #e3edf9;
+      --accent: #d35400;
+      --accent-light: #fff8f0;
+      --success: #146b39;
+      --text: #0f172a;
+      --muted: #475569;
+      --bg: #f5f7fa;
+      --surface: #ffffff;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.65;
+      padding: 36px 18px;
+    }
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      background: var(--surface);
+      padding: 52px;
+      border-radius: 22px;
+      box-shadow: 0 12px 36px rgba(15, 23, 42, 0.08);
+      border: 1px solid var(--border);
+    }
+    header {
+      border-bottom: 3px solid var(--primary);
+      padding-bottom: 28px;
+      margin-bottom: 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 12px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+    h1 { font-size: 34px; font-weight: 800; color: var(--text); line-height: 1.15; }
+    h2 {
+      font-size: 23px;
+      font-weight: 800;
+      color: var(--primary);
+      margin: 42px 0 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--primary-light);
+    }
+    h3 { font-size: 18px; font-weight: 700; margin: 28px 0 12px; color: var(--text); }
+    p { margin-bottom: 14px; color: var(--muted); }
+    ul, ol { margin: 0 0 18px 22px; color: var(--muted); }
+    li { margin-bottom: 8px; }
+    strong { color: var(--text); }
+    .callout {
+      background: #f8fafc;
+      border-left: 4px solid var(--accent);
+      padding: 16px 20px;
+      border-radius: 0 12px 12px 0;
+      margin: 18px 0;
+    }
+    .class-box {
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      margin: 24px 0;
+      background: #fcfdff;
+    }
+    .class-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .class-tag {
+      background: var(--primary);
+      color: white;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 5px 12px;
+      border-radius: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .class-tag.orange { background: var(--accent); }
+    .class-tag.green { background: var(--success); }
+    .class-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .val-box {
+      background: var(--primary-light);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 18px;
+      font-size: 14.5px;
+      color: var(--text);
+    }
+    .val-box strong { color: var(--primary); }
+    .brand-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin: 22px 0;
+    }
+    .brand-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      background: var(--bg);
+      text-align: center;
+    }
+    .brand-card img { max-width: 100%; height: auto; margin-top: 12px; }
+    .full-img {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      margin: 14px 0 24px;
+      background: white;
+      padding: 8px;
+    }
+    .cs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: 12px;
+      margin: 16px 0 24px;
+    }
+    .cs-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px;
+      background: var(--bg);
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .cs-card img { width: 100%; border-radius: 6px; margin-bottom: 6px; }
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin: 20px 0;
+    }
+    .comp-pair {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      background: var(--bg);
+    }
+    .comp-pair-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+    .comp-imgs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .comp-imgs img {
+      width: 100%;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: white;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 22px;
+    }
+    .team-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 18px;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .avatar-circle {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 14px;
+      border: 3px solid var(--primary-light);
+    }
+    .team-role {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 4px 0 10px;
+    }
+    @media print {
+      body { background: white; padding: 0; }
+      .container { box-shadow: none; border: none; padding: 15px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <span class="badge">Proyecto de EFI — Interfaz de Usuario 2026</span>
+        <h1>Oficios del Barrio</h1>
+        <p style="margin-top:6px;font-size:16px;">Software de Impacto Local · Opción 4: Economía Local y Empleo Barrial</p>
+      </div>
+      <img src="./assets/app-icon.svg" alt="Icono Oficios del Barrio" width="84" height="84">
+    </header>
+
+    <h2>1. Resumen de la Idea y Evolución UX</h2>
+    <p><strong>Oficios del Barrio</strong> es una aplicación web instalable en el celular (SPA Mobile-First) diseñada para conectar de forma rápida, accesible y segura a personas que brindan servicios de oficios (plomero, gasista, electricista, pintor, albañil) con vecinos de su mismo barrio que necesitan resolver una urgencia o mantenimiento en el hogar.</p>
+    <div class="callout">
+      <strong>Evolución respecto a nuestra entrega inicial:</strong> Partimos de la premisa de máxima simpleza para usuarios con conocimientos tecnológicos limitados. En lugar de obligar al vecino a copiar números o salir de la plataforma, diseñamos un <strong>chat interno que replica las convenciones visuales de WhatsApp</strong> (burbujas, hora, tilde de leído), sin solicitar ni exponer números de teléfono personales (toda la comunicación sucede íntegramente dentro de la app) y permitiendo que, al finalizar el trabajo, el vecino califique al profesional desde el mismo hilo de conversación.
+    </div>
+    <ul>
+      <li><strong>Objetivo 1 — Cercanía:</strong> Búsqueda filtrada por distancia en cuadras reales dentro del barrio.</li>
+      <li><strong>Objetivo 2 — Facilidad de uso:</strong> Botones grandes (mínimo 56px), un único botón naranja de acción por pantalla y chips de respuesta rápida para no tener que escribir.</li>
+      <li><strong>Objetivo 3 — Reputación barrial:</strong> Calificación por estrellas, etiquetas rápidas (<em>Puntual, Precio justo, Prolijo, Explicó todo</em>) y reseñas de vecinos.</li>
+    </ul>
+
+    <h2>2. Datos de la Empresa, Icono y Logos</h2>
+    <ul>
+      <li><strong>Nombre del Producto / Organización:</strong> Oficios del Barrio</li>
+      <li><strong>Eslogan:</strong> <em>"El vecino que resuelve, a la vuelta de tu casa"</em></li>
+      <li><strong>Comunidad de aplicación:</strong> Barrios residenciales (piloto ambientado en Barrio Alberdi, Banda Norte y Barrio Fénix, Río Cuarto).</li>
+    </ul>
+    <div class="brand-grid">
+      <div class="brand-card">
+        <strong>Icono para Apps y Tiendas</strong>
+        <p style="font-size:13px;margin-top:4px;">Hogar + punto naranja de cercanía</p>
+        <img src="./assets/app-icon.svg" alt="Icono de App" style="width:96px;height:96px;">
+      </div>
+      <div class="brand-card">
+        <strong>Logo Formato Claro (SVG)</strong>
+        <img src="./assets/logo-horizontal-claro.svg" alt="Logo Claro">
+      </div>
+      <div class="brand-card">
+        <strong>Logo Formato Oscuro (SVG)</strong>
+        <img src="./assets/logo-horizontal-oscuro.svg" alt="Logo Oscuro">
+      </div>
+    </div>
+
+    <h2>3. Valor Agregado de la Propuesta</h2>
+    <p><strong>¿Qué ofrece nuestra aplicación que el cliente no encuentra en opciones gratuitas o libres (grupos de Facebook, clasificados o contactos de WhatsApp)?</strong></p>
+    <ul>
+      <li><strong>Disponibilidad en tiempo real:</strong> Un interruptor simple (<code>Disponible</code> / <code>No disponible</code>) en el panel del prestador evita que el vecino pierda horas escribiendo a trabajadores que no pueden atender.</li>
+      <li><strong>Comunicación 100% interna sin pedir teléfono:</strong> No se solicita número telefónico ni al vecino ni al trabajador; toda la comunicación se realiza desde el chat integrado de la app, evitando spam y llamadas fuera de horario.</li>
+      <li><strong>Reputación vinculada al servicio:</strong> Las opiniones provienen de vecinos reales y destacan atributos concretos (puntualidad, prolijidad, claridad en el presupuesto) además de exhibir el badge de <strong>Matriculado</strong>.</li>
+      <li><strong>Cero fricción de redacción:</strong> Respuestas rápidas prearmadas tanto al iniciar la consulta como al responder o calificar.</li>
+    </ul>
+
+    <h2>4. ¿Cómo Ayuda la App a nuestra Comunidad?</h2>
+    <ul>
+      <li><strong>Economía Local Circular:</strong> Fomenta la contratación de trabajadores a pocas cuadras de distancia sin intermediarios ni comisiones.</li>
+      <li><strong>Inclusión Digital:</strong> Brinda presencia digital inmediata a trabajadores independientes que no manejan marketing ni redes sociales, mediante un alta guiada en 3 pasos.</li>
+      <li><strong>Seguridad Comunitaria:</strong> Genera tranquilidad en adultos mayores y familias al contar con referencias directas de sus propios vecinos.</li>
+    </ul>
+
+    <h2>5. Desarrollos del Cursado: Dónde los Tuvimos en Cuenta y Cómo los Valoramos</h2>
+    <p>A continuación detallamos cómo valoramos e implementamos en el proyecto cada uno de los desarrollos troncales vistos durante el año en la materia:</p>
+
+    
+    <div class="class-box">
+      <div class="class-header">
+        <span class="class-tag">Pilar UX 1</span>
+        <div class="class-title">Modelos Mentales y Affordance</div>
+      </div>
+      <div class="val-box">
+        <strong>💎 Cómo lo valoramos:</strong> Lo consideramos la base para cumplir nuestra promesa de <em>"cero curva de aprendizaje"</em>. Como apuntamos a vecinos y trabajadores con manejo tecnológico moderado o limitado, valoramos que la interfaz nunca obligue al usuario a adivinar cómo funciona un control ni a aprender un flujo extraño, sino que aproveche sus modelos mentales previos y comunique cada acción mediante significantes visuales (<em>affordances</em>) claros.
+      </div>
+      <p><strong>📍 Dónde lo tuvimos en cuenta en "Oficios del Barrio":</strong></p>
+      <ul>
+        <li><strong>Modelo Mental de Mensajería (Pantalla <code>06-chat</code>):</strong> En lugar de usar formularios de presupuesto complejos, adoptamos el modelo mental de <strong>WhatsApp</strong> que el vecino ya usa todos los días: burbujas azules a la derecha (enviado), blancas a la izquierda (recibido), hora y marca de <em>"10:12 · Leído"</em>.</li>
+        <li><strong>Adaptación al Modelo Mental de cada Rol:</strong> Así como en los ejercicios de clase adaptamos la interfaz según quién mira la pantalla, aquí diferenciamos el modelo mental del <strong>Vecino</strong> (que busca resolver una urgencia eligiendo un icono de gota/llama/rayo y viendo a cuántas <em>cuadras</em> está el trabajador) frente al modelo mental del <strong>Prestador</strong> (que al abrir su panel en <code>08-prestador-panel</code> ve primero su interruptor de trabajo diario y sus <em>5 consultas sin leer</em>).</li>
+        <li><strong>Affordance Visual por Capas, Sombra y Estados:</strong> Los botones principales (<code>56px</code> de alto) tienen relieve mediante <code>box-shadow</code> y bordes redondeados, diferenciándose de los contenedores planos. Los chips de respuesta rápida y de calificación (<em>"Puntual"</em>, <em>"Prolijo"</em>) cambian de borde fino gris a relleno azul con borde grueso al seleccionarse.</li>
+        <li><strong>Affordance sin depender solo del color:</strong> Para garantizar que una persona con daltonismo o baja visión perciba el estado del sistema, la disponibilidad nunca se indica solo con verde o rojo: combina <strong>punto gráfico + texto explícito (<code>● Disponible</code> / <code>● No disponible</code>)</strong> y deshabilita el botón de contacto cuando el prestador no atiende.</li>
+        <li><strong>Mapeo Natural:</strong> El <em>toggle switch</em> del panel del prestador mapea espacialmente derecha = activo/disponible, y la fila de 5 estrellas en <code>07-calificacion</code> ilumina progresivamente las estrellas mientras traduce el puntaje a lenguaje natural (<em>"Muy bueno"</em>, <em>"Excelente"</em>).</li>
+      </ul>
+    </div>
+
+    
+    <div class="class-box">
+      <div class="class-header">
+        <span class="class-tag orange">Pilar UX 2</span>
+        <div class="class-title">El Orden del Caos (Gestalt y Jerarquía Visual)</div>
+      </div>
+      <div class="val-box">
+        <strong>💎 Cómo lo valoramos:</strong> Valoramos las Leyes de Gestalt y la Jerarquía Visual como la herramienta fundamental para <em>eliminar el ruido visual ante una urgencia doméstica</em>. Cuando un vecino busca un plomero o gasista, necesita escanear la pantalla en menos de 10 segundos y distinguir de un vistazo quién está cerca, quién está disponible y qué botón debe tocar.
+      </div>
+      <p><strong>📍 Dónde lo tuvimos en cuenta en "Oficios del Barrio":</strong></p>
+      <ul>
+        <li><strong>Ley de Región Común (<code>03-home-cliente</code> y <code>04-resultados</code>):</strong> Cada prestador y cada opinión vecinal están delimitados dentro de tarjetas blancas (<code>#ffffff</code>) con borde suave (<code>#e3edf9</code>) sobre un fondo neutro (<code>#f5f7fa</code>), agrupando avatar, nombre, oficio, estrellas, distancia y CTA en una unidad coherente.</li>
+        <li><strong>Ley de Proximidad (<code>09-registro-prestador</code> y tarjetas):</strong> Agrupamos a <code>4px-8px</code> los datos íntimamente relacionados (Nombre + Badge de estado, o Label + Input en el formulario) y separamos con <code>20px-24px</code> los bloques independientes para evitar errores de lectura.</li>
+        <li><strong>Ley de Similitud:</strong> Todos los controles de filtrado (<em>"Cerca mío"</em>, <em>"Mejor puntuados"</em>), respuestas rápidas del chat y etiquetas de calificación comparten morfología de píldora (<code>border-radius: 9999px</code>), enseñándole al usuario un único patrón visual repetible.</li>
+        <li><strong>Ley de Figura-Fondo:</strong> Aplicada en las tarjetas blancas superpuestas sobre los encabezados azules (<code>02-bienvenida</code> y <code>05-perfil-prestador</code>) y en el <strong>Modal de confirmación</strong> con fondo oscurecido (<code>rgba(0,0,0,0.55)</code>) que aísla la decisión principal.</li>
+        <li><strong>Jerarquía Visual en 4 Niveles (<code>05-perfil-prestador</code>):</strong> Ordenamos la vista del perfil según el peso de decisión: <strong>1° Identidad y Matrícula</strong> (Avatar XL + Título 22px + Badges), <strong>2° Resumen Estadístico</strong> (3 cajas simétricas con números en 24px Bold: <code>4.8</code> puntaje, <code>23</code> trabajos, <code>6</code> cuadras), <strong>3° Contexto y Prueba Social</strong> ("Sobre mí" y reseñas) y <strong>4° Conversión Fija</strong> (CTA inferior naranja fijo al borde de la pantalla).</li>
+      </ul>
+    </div>
+
+    
+    <div class="class-box">
+      <div class="class-header">
+        <span class="class-tag green">Pilar UX 3</span>
+        <div class="class-title">Estética Funcional (Color, Tipografía y Componentes UI)</div>
+      </div>
+      <div class="val-box">
+        <strong>💎 Cómo lo valoramos:</strong> Valoramos la Estética Funcional bajo la premisa de que <em>el diseño visual no es decoración, sino comunicación operativa</em>. Sistematizamos el color, la tipografía y los componentes en un Sistema de Diseño formal (tanto en Figma como en <code>src/css/tokens.css</code> y <code>components.css</code>) donde cada color y cada tamaño tipográfico cumple una función de legibilidad, accesibilidad WCAG AA y conversión.
+      </div>
+      <p><strong>📍 Dónde lo tuvimos en cuenta en "Oficios del Barrio":</strong></p>
+      <ul>
+        <li><strong>Uso Funcional del Color (Regla de Un Solo Naranja por Pantalla):</strong>
+          <ul>
+            <li><strong>Azul Confianza (<code>#1a56a8</code>):</strong> Sostiene la estructura, encabezados y navegación. Con texto blanco alcanza un contraste de <strong>6.9:1</strong> (cumple AA y AAA).</li>
+            <li><strong>Naranja Oficio (<code>#d35400</code>):</strong> Reservado <strong>exclusivamente para la acción de conversión</strong> (contactar o calificar). Al no repetirse en elementos decorativos, guía la vista directo al objetivo de negocio.</li>
+            <li><strong>Tokens Semánticos y Modo Oscuro (<code>Light / Dark Mode</code>):</strong> Verde (<code>#146b39</code>) para disponible, Rojo (<code>#dc2626</code>) para no disponible, y paleta completa adaptable a Modo Oscuro mediante variables CSS (<code>[data-theme="dark"]</code>) con persistencia en <code>localStorage</code>.</li>
+          </ul>
+        </li>
+        <li><strong>Tipografía Funcional (<code>Inter</code> y Regla de Mínimo 16px):</strong> Elegimos <strong>Inter</strong> por su legibilidad en pantallas móviles. Definimos por regla del sistema que ningún texto de contenido baje de <code>15px-16px</code>, reservando los <code>12px-13px</code> solo para metadatos secundarios (hora o contadores), garantizando lectura cómoda para adultos mayores.</li>
+        <li><strong>Componentes UI Modulares y los 5 Estados Interactivos:</strong> Diseñamos y programamos componentes atómicos reutilizables (Botones, Inputs con foco azul de 2px, Chips, Tarjetas de prestador, Burbujas de chat, Estrellas, Switch de estado y Barra de navegación inferior) implementando los <strong>5 estados obligatorios</strong>: <em>Default, Hover, Active, Focus (<code>:focus-visible</code> de 3px para navegación por teclado) y Disabled</em>.</li>
+      </ul>
+      <img class="full-img" style="margin-bottom:0;" src="./assets/01-fundamentos.svg" alt="Sistema de Diseño: Color, Tipografía y Componentes UI">
+    </div>
+
+    <h3>5.1. Arquitectura de Información y Mapa del Sitio (Sitemap)</h3>
+    <p>Estructuramos la arquitectura de información priorizando caminos cortos y directos desde la bienvenida hasta el contacto en el chat, integrando la calificación final dentro de la misma conversación para que el vecino no tenga que buscar en otra sección dónde puntuar el trabajo.</p>
+    <img class="full-img" src="./assets/sitemap-oficios-del-barrio.png" alt="Sitemap Oficios del Barrio">
+
+    <h3>5.2. Recorrido del Usuario</h3>
+    <p>Mapeamos el flujo temporal por carriles (Vecino vs. Prestador) y los momentos clave de interacción a lo largo de la aplicación:</p>
+    <img class="full-img" src="./assets/00-roadmap.svg" alt="Recorrido del Usuario">
+
+    <h3>5.3. Evolución de Wireframes (Baja Fidelidad) a Diseño Final UI y Web SPA</h3>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;margin:14px 0 22px;">
+      <a href="https://www.figma.com/design/CiIq2M3qOFzPITvehE0IA8/PROTOTIPADO?node-id=0-1&p=f&t=Q0UMiLogzwEyrKuR-0" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;background:var(--bg);color:var(--primary);border:1.5px solid var(--primary);padding:10px 18px;border-radius:12px;font-weight:700;font-size:14px;text-decoration:none;">
+        📐 Ver Wireframes y Prototipado en Figma (Baja Fidelidad) ↗
+      </a>
+      <a href="https://www.figma.com/design/rxu9gFRhdJSMgq8FVVRjin/EFI?timeline=keyframe&node-id=1-2&t=RSMbL2Khclh0bPwA-0" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;background:var(--primary);color:white;padding:10px 18px;border-radius:12px;font-weight:700;font-size:14px;text-decoration:none;">
+        🎨 Ver Diseño Final UI en Figma (Alta Fidelidad - EFI) ↗
+      </a>
+    </div>
+    <div class="comparison-grid">
+      <div class="comp-pair">
+        <div class="comp-pair-title">02. Bienvenida y Selección de Rol</div>
+        <div class="comp-imgs">
+          <img src="./assets/wireframes/02-bienvenida-wireframe.svg" alt="Wireframe Bienvenida">
+          <img src="./assets/02-bienvenida.png" alt="Final Bienvenida">
+        </div>
+      </div>
+      <div class="comp-pair">
+        <div class="comp-pair-title">03. Home del Cliente</div>
+        <div class="comp-imgs">
+          <img src="./assets/wireframes/03-home-cliente-wireframe.svg" alt="Wireframe Home">
+          <img src="./assets/03-home-cliente.png" alt="Final Home">
+        </div>
+      </div>
+      <div class="comp-pair">
+        <div class="comp-pair-title">04. Resultados y Filtros</div>
+        <div class="comp-imgs">
+          <img src="./assets/wireframes/04-resultados-wireframe.svg" alt="Wireframe Resultados">
+          <img src="./assets/04-resultados.png" alt="Final Resultados">
+        </div>
+      </div>
+      <div class="comp-pair">
+        <div class="comp-pair-title">05. Perfil del Prestador</div>
+        <div class="comp-imgs">
+          <img src="./assets/wireframes/05-perfil-prestador-wireframe.svg" alt="Wireframe Perfil">
+          <img src="./assets/05-perfil-prestador.png" alt="Final Perfil">
+        </div>
+      </div>
+      <div class="comp-pair">
+        <div class="comp-pair-title">06. Chat Interno y Cierre</div>
+        <div class="comp-imgs">
+          <img src="./assets/wireframes/06-chat-wireframe.svg" alt="Wireframe Chat">
+          <img src="./assets/06-chat.png" alt="Final Chat">
+        </div>
+      </div>
+      <div class="comp-pair">
+        <div class="comp-pair-title">07. Calificación con Chips</div>
+        <div class="comp-imgs">
+          <img src="./assets/wireframes/07-calificacion-wireframe.svg" alt="Wireframe Calificación">
+          <img src="./assets/07-calificacion.png" alt="Final Calificación">
+        </div>
+      </div>
+      <div class="comp-pair">
+        <div class="comp-pair-title">08. Panel del Prestador</div>
+        <div class="comp-imgs">
+          <img src="./assets/wireframes/08-prestador-panel-wireframe.svg" alt="Wireframe Panel">
+          <img src="./assets/08-prestador-panel.png" alt="Final Panel">
+        </div>
+      </div>
+      <div class="comp-pair">
+        <div class="comp-pair-title">09. Registro en 3 Pasos</div>
+        <div class="comp-imgs">
+          <img src="./assets/wireframes/09-registro-prestador-wireframe.svg" alt="Wireframe Registro">
+          <img src="./assets/09-registro-prestador.png" alt="Final Registro">
+        </div>
+      </div>
+    </div>
+
+    <h2>6. Equipo del Proyecto</h2>
+    <p>Transparencia y roles de los integrantes que llevaron adelante la investigación, el diseño y el desarrollo de <strong>Oficios del Barrio</strong>:</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="avatar-circle">LP</div>
+        <h3>Lucas Pérez</h3>
+        <div class="team-role">UX/UI Lead & Frontend Architect</div>
+        <p style="font-size:13.5px;">Responsable de la arquitectura de la Web SPA, implementación de Estética Funcional en CSS Tokens y Componentes UI, accesibilidad WCAG AA y navegación por teclado.</p>
+      </div>
+      <div class="team-card">
+        <div class="avatar-circle">LN</div>
+        <h3>Leonardo Neira</h3>
+        <div class="team-role">UX Researcher & Information Architect</div>
+        <p style="font-size:13.5px;">Encargado del estudio de Modelos Mentales y Affordance, análisis de recorridos de usuario y definición de la arquitectura en el Sitemap.</p>
+      </div>
+      <div class="team-card">
+        <div class="avatar-circle">TP</div>
+        <h3>Thomas Pereyra</h3>
+        <div class="team-role">UI Designer & Prototyping Specialist</div>
+        <p style="font-size:13.5px;">Responsable de aplicar las Leyes de Gestalt y Jerarquía Visual desde los wireframes estructurales hasta el prototipo de alta fidelidad en Figma.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
