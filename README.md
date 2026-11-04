@@ -7,4 +7,4 @@ Presentación animada de la investigación UX/UI del proyecto Oficios del Barrio
 
 Controles: flechas o espacio para avanzar, F pantalla completa, D tema claro/oscuro.
 
-Equipo: Lucas Pérez, Leonardo Neira, Thomas Pereyra.
+Equipo: Lucas Pérez, Leonardo Neira, Thomas Pereyra, Ramón Joaquín Rodríguez.

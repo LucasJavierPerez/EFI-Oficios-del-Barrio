@@ -383,6 +383,8 @@ p { margin: 0; }
   .hier { grid-template-columns: 56px minmax(0, 1fr); }
   .lvl-tag { font-size: 10px; }
 }
+.cols-3.team { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 900px) { .cols-3.team { grid-template-columns: minmax(0, 1fr); } }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
   .ring { display: none; }
@@ -407,7 +409,7 @@ p { margin: 0; }
         <dl class="meta" data-r>
           <div><dt>Eje</dt><dd>Opción 4 · Economía local y empleo barrial</dd></div>
           <div><dt>Piloto</dt><dd>Alberdi, Banda Norte y Fénix · Río Cuarto</dd></div>
-          <div><dt>Equipo</dt><dd>Pérez · Neira · Pereyra</dd></div>
+          <div><dt>Equipo</dt><dd>Pérez · Neira · Pereyra · Rodríguez</dd></div>
         </dl>
       </div>
       <div class="beacon" data-r aria-hidden="true">
@@ -705,6 +707,7 @@ p { margin: 0; }
         <div data-r><div class="avatar">LP</div><h3>Lucas Pérez</h3><div class="role">UX/UI Lead &amp; Frontend Architect</div><p>Arquitectura de la SPA, tokens CSS y componentes UI, accesibilidad WCAG AA y navegación por teclado.</p></div>
         <div data-r><div class="avatar">LN</div><h3>Leonardo Neira</h3><div class="role">UX Researcher &amp; Information Architect</div><p>Modelos mentales y affordance, recorridos de usuario y arquitectura del sitemap.</p></div>
         <div data-r><div class="avatar">TP</div><h3>Thomas Pereyra</h3><div class="role">UI Designer &amp; Prototyping Specialist</div><p>Gestalt y jerarquía visual, desde los wireframes hasta el prototipo de alta fidelidad en Figma.</p></div>
+        <div data-r><div class="avatar">RR</div><h3>Ramón Joaquín Rodríguez</h3><div class="role">QA Tester &amp; Documentation</div><p>Testeo funcional de la app y armado del informe de investigación.</p></div>
       </div>
     </div>
   </section>
